@@ -1,6 +1,7 @@
 package com.qorlwn.pro1;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,5 +22,15 @@ public class BoardController {
 		model.addAttribute("list", boardService.boardList());
 		
 		return "board";
+	}
+	
+	// 파라미터로 들어오는 값 잡기
+	@GetMapping("/detail")
+	public String detail(HttpServletRequest request, Model model) {
+		String bno = request.getParameter("bno");
+		// System.out.println("bno : " + bno);
+		BoardDTO dto = boardService.detail(bno);
+		model.addAttribute("dto", dto);
+		return "detail";
 	}
 }
