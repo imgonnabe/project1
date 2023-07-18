@@ -23,4 +23,10 @@ public class BoardService {
 	public BoardDTO detail(String bno) {
 		return boardDAO.detail(bno);
 	}
+
+	public void write(BoardDTO dto) {
+		boardDAO.write(dto);// 실행만 시키고 결과를 받지 않는다.
+		// select를 제외한 나머지는 영향받은 행의 수(int)를 받아오기도 한다.
+		// ex. delete
+	}
 }

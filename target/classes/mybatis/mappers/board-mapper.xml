@@ -10,6 +10,11 @@
 	<select id="detail" parameterType="String" resultType="boardDTO">
 		select * from board where bno = #{bno}
 	</select>
+	
+	<!-- insert는 result가 없다. -->
+	<insert id="write" parameterType="boardDTO">
+		insert into board (btitle, bcontent, bwrite) values (#{btitle}, #{bcontent}, #{bwrite})
+	</insert>
 
 
 </mapper>

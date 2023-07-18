@@ -23,4 +23,8 @@ public class BoardDAO {
 	public BoardDTO detail(String bno) {
 		return sqlSession.selectOne("board.detail", bno);// namespace.id, 값
 	}
+
+	public void write(BoardDTO dto) {
+		sqlSession.insert("board.write", dto);
+	}
 }
