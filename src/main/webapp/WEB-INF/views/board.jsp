@@ -6,12 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/board.css">
 </head>
 <body>
+<%@ include file="menu.jsp" %>
 	<h1>보드</h1>
 	<img alt="" src="./img/update.png" height="100px">
-	<a href="./">index로 가기</a>
 	<table border = "1">
 		<tr>
 			<td>번호</td>
