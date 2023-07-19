@@ -1,5 +1,6 @@
 @charset "UTF-8";
 .view{
+	float: left;
 	width: 50%;
 	height: auto;
 	border: 1px solid gray;

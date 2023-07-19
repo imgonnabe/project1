@@ -8,21 +8,23 @@ nav {
 	/*position: fixed;*/
 	top: 0;
 	width: 100%;
-	height: 50px;
+	height: 70px;
 	background-color: gray;
 }
 
 nav ul {
 	margin: 0;
 	padding: 0;
+	text-align : center;
 }
 
 nav li {
 	list-style: none; /* li앞에 원을 없앤다. */
-	float: left; /* 옆으로 붙는다. */
+	/* float: left;  옆으로 붙는다. */
+	display : inline-block;
 	width: 150px;
-	height: 50px;
-	line-height: 50px;
+	height: 70px;
+	line-height: 70px;
 	font-size: larger;
 	font-weight: bold;
 	text-align: center;

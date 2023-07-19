@@ -13,7 +13,7 @@
 	
 	<!-- insert는 result가 없다. -->
 	<insert id="write" parameterType="boardDTO">
-		insert into board (btitle, bcontent, bwrite) values (#{btitle}, #{bcontent}, #{bwrite})
+		insert into board (btitle, bcontent, bwrite, bip) values (#{btitle}, #{bcontent}, #{bwrite}, #{bip})
 	</insert>
 
 
