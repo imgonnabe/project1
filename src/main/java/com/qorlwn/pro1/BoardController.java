@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BoardController {
@@ -55,5 +56,19 @@ public class BoardController {
 		boardService.write(dto);
 
 		return "redirect:board";// 다시 컨트롤러 지나가기(get방식)
+	}
+	
+	// 게시물이 삭제된다면
+	@GetMapping("/delete")
+	public String delete(@RequestParam(value = "bno", required = false, defaultValue = "0") int bno) {// HttpServletRequest의 getParameter();
+		// System.out.println("bno : " + bno);
+		
+		// dto
+		BoardDTO dto = new BoardDTO();
+		dto.setBno(bno);
+		// dto.setBwrite(null);// 사용자 정보
+		// 추후 로그인을 하면 사용자의 정보도 담아서 보낸다.
+		boardService.delete(dto);
+		return "redirect:board";//삭제 완료한 후에 다시 보드로 간다.
 	}
 }

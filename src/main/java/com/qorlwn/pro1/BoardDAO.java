@@ -27,4 +27,8 @@ public class BoardDAO {
 	public void write(BoardDTO dto) {
 		sqlSession.insert("board.write", dto);
 	}
+
+	public void delete(BoardDTO dto) {
+		sqlSession.delete("board.delete", dto);
+	}
 }

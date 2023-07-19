@@ -51,4 +51,8 @@ public class BoardService {
 		// select를 제외한 나머지는 영향받은 행의 수(int)를 받아오기도 한다.
 		// ex. delete
 	}
+
+	public void delete(BoardDTO dto) {
+		boardDAO.delete(dto);
+	}
 }

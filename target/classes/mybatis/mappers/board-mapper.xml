@@ -15,6 +15,10 @@
 	<insert id="write" parameterType="boardDTO">
 		insert into board (btitle, bcontent, bwrite, bip) values (#{btitle}, #{bcontent}, #{bwrite}, #{bip})
 	</insert>
+	
+	<delete id="delete" parameterType="boardDTO">
+		delete from board where bno = #{bno}
+	</delete>
 
 
 </mapper>
