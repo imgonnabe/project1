@@ -1,5 +1,11 @@
 @charset "UTF-8";
 .body1{
 	text-align: center;
-	background-color: gray;
+}
+
+table{
+	display: inline-block;
+	text-align: center;
+	width: 800px;
+	height: 800px;
 }

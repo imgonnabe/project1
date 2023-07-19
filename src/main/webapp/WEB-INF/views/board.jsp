@@ -15,7 +15,7 @@
 	<%@ include file="menu.jsp"%>
 	<div class="body1">
 		<h1>보드</h1>
-		<img alt="" src="./img/home.png" height="100px">
+		<img alt="" src="./img/home.png" height="100px"><br>
 		<table border="1">
 			<tr>
 				<td>번호</td>
