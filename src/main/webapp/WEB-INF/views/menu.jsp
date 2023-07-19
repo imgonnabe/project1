@@ -5,7 +5,7 @@
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <nav>
 	<ul>
-		<li><img src="./img/bulletin-board.png"></li>
+		<li><img src="./img/bulletin-board.png" height="40px"></li>
 		<li onclick="link('')">메인</li>
 		<li onclick="link('board')">게시판</li>
 		<li onclick="link('board2')">게시판2</li>
