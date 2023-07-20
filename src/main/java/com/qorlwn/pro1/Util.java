@@ -11,6 +11,25 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Component
 public class Util {
+	// 문자열이 들어오면 숫자로 변경
+	public int strToInt(String str) {
+		int result = 0;
+		try {
+			result = Integer.parseInt(str);
+		} catch (Exception e) {
+			// String re = "";
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < str.length(); i++) {
+				if(Character.isDigit(str.charAt(i))) {
+					// re += str.charAt(i);
+					sb.append(str.charAt(i));
+				}
+			}
+			result = Integer.parseInt(sb.toString());
+		}
+		return result;
+	}
+	
 	public String exchange(String str) {
 		str = str.replaceAll("<", "&lt;");
 		str = str.replaceAll(">", "&gt;");

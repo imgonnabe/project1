@@ -10,6 +10,12 @@
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <script type="text/javascript">
+	function edit(){
+		if(confirm("수정하시겠습니까?")){
+			location.href="./edit?bno=${dto.bno }";
+		}
+	}
+	
 	function del(){
 		let chk = confirm("삭제하시겠습니까?");// 참 거짓
 		if(chk){
@@ -23,7 +29,8 @@
 <h1>상세보기</h1>
 	<div class="view">
 		<div class="no">
-		${dto.bno }<img alt="" src="./img/update2.png"><img alt="" src="./img/delete2.png" onclick="del()">
+		${dto.bno }<img alt="" src="./img/update2.png" onclick="edit()">
+		<img alt="" src="./img/delete2.png" onclick="del()">
 		${dto.btitle }
 		</div>
 		<div class="write">${dto.bwrite }</div>

@@ -16,13 +16,13 @@
 	<div class="body1">
 		<h1>보드</h1>
 		<img alt="" src="./img/home.png" height="100px"><br>
-		<table border="1">
+		<table>
 			<tr>
-				<td>번호</td>
-				<td>제목</td>
-				<td>글쓴이</td>
-				<td>날짜</td>
-				<td>좋아요</td>
+				<th class="th1">번호</th>
+				<th>제목</th>
+				<th class="th2">글쓴이</th>
+				<th class="th2">날짜</th>
+				<th class="th1">좋아요</th>
 			</tr>
 			<c:forEach items="${list }" var="row">
 				<tr onclick="location.href='./detail?bno=${row.bno }'">

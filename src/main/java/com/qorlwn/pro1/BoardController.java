@@ -1,5 +1,7 @@
 package com.qorlwn.pro1;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BoardController {
@@ -17,6 +20,9 @@ public class BoardController {
 	// autowired말고 resource로 연결
 	@Resource(name = "boardService")
 	private BoardService boardService;
+	
+	@Autowired
+	private Util util;
 	
 	@GetMapping("/board")
 	public String board(Model model) {
@@ -29,7 +35,8 @@ public class BoardController {
 	// 파라미터로 들어오는 값 잡기
 	@GetMapping("/detail")
 	public String detail(HttpServletRequest request, Model model) {
-		String bno = request.getParameter("bno");
+		// String bno = request.getParameter("bno");
+		int bno = util.strToInt(request.getParameter("bno"));
 		// System.out.println("bno : " + bno);
 		BoardDTO dto = boardService.detail(bno);
 		model.addAttribute("dto", dto);
@@ -70,5 +77,31 @@ public class BoardController {
 		// 추후 로그인을 하면 사용자의 정보도 담아서 보낸다.
 		boardService.delete(dto);
 		return "redirect:board";//삭제 완료한 후에 다시 보드로 간다.
+	}
+	
+	// 게시물이 수정된다면
+	@GetMapping("/edit")
+	public ModelAndView edit(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("edit");// edit.jsp 연다.
+		// db에 bno를 보내서 dto를 얻어온다.
+		// mv에 실어보낸다.
+		BoardDTO dto = boardService.detail(util.strToInt(request.getParameter("bno")));
+		mv.addObject("dto", dto);
+		return mv;
+	}
+	
+	@PostMapping("/edit")
+	public String edit(BoardDTO dto) {
+		// System.out.println("map : " + map);
+		// System.out.println(dto.getBtitle());
+		// System.out.println(dto.getBcontent());
+		// System.out.println(dto.getBno());
+		boardService.edit(dto);
+		return "redirect:detail?bno=" + dto.getBno();
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
 	}
 }
