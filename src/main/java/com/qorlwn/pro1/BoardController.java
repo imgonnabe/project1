@@ -100,8 +100,4 @@ public class BoardController {
 		return "redirect:detail?bno=" + dto.getBno();
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
 }

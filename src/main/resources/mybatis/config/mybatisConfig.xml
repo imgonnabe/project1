@@ -5,6 +5,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.qorlwn.pro1.BoardDTO" alias="boardDTO"/>
-		
+		<typeAlias type="com.qorlwn.pro1.LoginDTO" alias="loginDTO"/>
 	</typeAliases>
 </configuration>

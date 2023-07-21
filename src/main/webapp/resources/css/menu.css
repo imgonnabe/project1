@@ -12,16 +12,16 @@ nav {
 	background-color: gray;
 }
 
-nav ul {
+ul {
 	margin: 0;
 	padding: 0;
 	text-align : center;
 }
 
-nav li {
+.menu{
 	list-style: none; /* li앞에 원을 없앤다. */
-	/* float: left;  옆으로 붙는다. */
-	display : inline-block;
+	float: left; /* 옆으로 붙는다. */
+	/*display : inline-block;*/
 	width: 150px;
 	height: 70px;
 	line-height: 70px;
@@ -33,12 +33,4 @@ nav li {
 nav li:hover {
 	background-color: black;
 	color: white;
-}
-
-.th1{
-	width: 10%;
-}
-
-.th2{
-	width: 20%;
 }
