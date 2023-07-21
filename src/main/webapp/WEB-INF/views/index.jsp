@@ -12,5 +12,6 @@
 <body>
 <%@ include file="menu.jsp" %>
 	<a href="./board"><img src="./img/index.png" width="200px" height="200px"></a>
+	<%=request.getHeader("User-Agent") %>
 </body>
 </html>
