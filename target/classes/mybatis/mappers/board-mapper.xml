@@ -3,25 +3,34 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-	<select id="boardList" resultType="Map">
-		SELECT * FROM board order by bno desc limit 10
+	<select id="boardList" resultType="boardDTO">
+		SELECT * FROM boardview
 	</select>
-	
-	<select id="detail" parameterType="Integer" resultType="boardDTO">
-		select * from board where bno = #{bno}
+
+	<select id="detail" parameterType="boardDTO"
+		resultType="boardDTO">
+		select * from boardview where bno = #{bno} 
+		<if test="m_id != null">
+		and m_id=#{mid}
+		</if>
 	</select>
-	
+
 	<!-- insert는 result가 없다. -->
+	<!-- 서브쿼리 : 쿼리 속에 쿼리 -->
 	<insert id="write" parameterType="boardDTO">
-		insert into board (btitle, bcontent, bwrite, bip) values (#{btitle}, #{bcontent}, #{bwrite}, #{bip})
+		insert into board (btitle,
+		bcontent, m_no, bip) values (#{btitle}, #{bcontent}, (select m_no from
+		members where m_id=#{m_id}), #{bip})
 	</insert>
-	
+
 	<delete id="delete" parameterType="boardDTO">
-		delete from board where bno = #{bno}
+		delete from board where bno =
+		#{bno}
 	</delete>
-	
+
 	<update id="edit" parameterType="boardDTO">
-		update board set btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
+		update board set
+		btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
 	</update>
 
 

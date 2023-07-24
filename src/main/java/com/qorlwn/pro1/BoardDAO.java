@@ -16,12 +16,12 @@ public class BoardDAO {
 	@Named("sqlSession")
 	private SqlSession sqlSession;
 
-	public List<Map<String, Object>> boardList(){
+	public List<BoardDTO> boardList(){
 		return sqlSession.selectList("board.boardList");
 	}
 
-	public BoardDTO detail(int bno) {
-		return sqlSession.selectOne("board.detail", bno);// namespace.id, 값
+	public BoardDTO detail(BoardDTO dto) {
+		return sqlSession.selectOne("board.detail", dto);// namespace.id, 값
 	}
 
 	public void write(BoardDTO dto) {

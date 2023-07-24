@@ -1,35 +1,42 @@
 @charset "UTF-8";
-.view{
-	float: left;
+h1{
+	text-align: center;
+}
+.body {
+	margin: 0 auto;
+	text-align: center;
+	border: 2px solid black;
 	width: 50%;
+}
+
+.view {
 	height: auto;
-	border: 1px solid gray;
-	box-sizing: border-box;
+	background-color: #F6ECDA;
 	padding: 10px;
 }
 
-.no{
-	height: 100%;
-	border-bottom: 1px solid black;
+.no {
+	float: left;
+	height: auto;
 }
 
-.title{
-	height: 100%;
-	border-bottom: 1px solid black;
+.write {
+	float: right;
 	font-size: large;
 }
 
-.write{
-	height: 100%;
+.title {
 	border-bottom: 1px solid black;
 }
 
-.like{
+.like {
+	float: right;
 	height: 100%;
-	border-bottom: 1px solid black;
+	box-sizing: border-box;
 }
 
-#content{
-	width: 100%;
-	height: 100px;
-}	
+#content {
+	margin: 0 atuo;
+	width : 30%;
+	height: auto;
+}
