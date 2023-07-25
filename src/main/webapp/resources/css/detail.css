@@ -2,9 +2,9 @@
 h1{
 	text-align: center;
 }
+
 .body {
 	margin: 0 auto;
-	text-align: center;
 	border: 2px solid black;
 	width: 50%;
 }
@@ -12,31 +12,26 @@ h1{
 .view {
 	height: auto;
 	background-color: #F6ECDA;
-	padding: 10px;
+	border-bottom: 1px solid black;
+	overflow: auto;
+	padding: 5px;
 }
 
 .no {
 	float: left;
-	height: auto;
+	padding: 5px;
 }
 
-.write {
+.name, .like {
 	float: right;
-	font-size: large;
+	padding: 5px;
 }
 
 .title {
-	border-bottom: 1px solid black;
-}
-
-.like {
-	float: right;
-	height: 100%;
-	box-sizing: border-box;
+	font-size: larger;
+	font-weight: bolder;
 }
 
 #content {
-	margin: 0 atuo;
-	width : 30%;
-	height: auto;
+	padding: 5px;
 }

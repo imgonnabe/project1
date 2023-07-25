@@ -11,7 +11,7 @@
 		resultType="boardDTO">
 		select * from boardview where bno = #{bno} 
 		<if test="m_id != null">
-		and m_id=#{mid}
+		and m_id=#{m_id}
 		</if>
 	</select>
 
@@ -24,13 +24,18 @@
 	</insert>
 
 	<delete id="delete" parameterType="boardDTO">
-		delete from board where bno =
-		#{bno}
+		delete from board where bno=#{bno}
+		and m_no=(select m_no from members where m_id=#{m_id})
 	</delete>
 
 	<update id="edit" parameterType="boardDTO">
 		update board set
 		btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
+	</update>
+	
+	<update id="likeUp" parameterType="boardDTO">
+		update board set
+		blike=blike+1 where bno=#{bno}
 	</update>
 
 

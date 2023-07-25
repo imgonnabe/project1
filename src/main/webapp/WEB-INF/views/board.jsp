@@ -14,13 +14,12 @@
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
-	<div class="body1">
 		<h1>보드</h1>
 		<img alt="" src="./img/home.png" height="100px">
 		<c:if test="${sessionScope.mname ne null }">
 			<button onclick="location.href='./write'" class="btn">글쓰기</button>
 		</c:if>
-		<br>
+		<br><br>
 		<c:choose>
 			<c:when test="${fn:length(list) gt 0}">
 				<div class="table">
@@ -30,7 +29,7 @@
 							<th>제목</th>
 							<th class="th2">글쓴이</th>
 							<th class="th2">날짜</th>
-							<th class="th1">좋아요</th>
+							<th class="th1">조회수</th>
 						</tr>
 						<c:forEach items="${list }" var="row">
 							<tr onclick="location.href='./detail?bno=${row.bno }'">
@@ -46,6 +45,5 @@
 			</c:when>
 			<c:otherwise><h2>출력할 데이터가 없습니다.</h2></c:otherwise>
 		</c:choose>
-	</div>
 </body>
 </html>

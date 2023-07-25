@@ -37,13 +37,13 @@
 					<img alt="" src="./img/delete2.png" onclick="del()">
 				</c:if>
 			</div>
-			<div class="write">${dto.m_name }</div>
-			<br>
-			<div class="title">${dto.btitle }</div>
+			<div class="name">${dto.m_name }</div>
 			<br>
 			<div class="like">
-				<img alt="" src="./img/like.png">${dto.blike } ${dto.bip }
+				<img alt="" src="./img/like.png">${dto.blike } / ${dto.bip }
 			</div>
+			<br>
+			<div class="title">${dto.btitle }</div>
 		</div>
 		<div id="content">${dto.bcontent }</div>
 	</div>

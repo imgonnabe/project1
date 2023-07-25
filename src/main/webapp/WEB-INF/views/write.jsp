@@ -24,13 +24,30 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script type="text/javascript">
+	function check() {
+		let title = document.getElementById("title");
+		if (title.value.length < 5) {
+			alert("제목은 5글자 이상이어야 합니다.");
+			title.focus();
+			return false;
+		}
+
+		let content = document.getElementById("summernote");
+		if (content.value.length < 5) {
+			alert("내용은 5글자 이상이어야 합니다.");
+			content.focus();
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
 	<h1>글쓰기</h1>
 	<div class="write-div">
-		<form action="./write" method="post">
-			<input type="text" name="title">
+		<form action="./write" method="post" onsubmit="return check()">
+			<input type="text" name="title" id="title">
 			<textarea id="summernote" name="content"></textarea>
 			<button class="btn" type="submit">글쓰기</button>
 		</form>

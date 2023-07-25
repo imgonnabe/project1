@@ -34,7 +34,7 @@ public class LoginController {
 			session.setAttribute("mname", dto.getM_name());
 			session.setAttribute("mid", request.getParameter("id"));
 			// 세션 : 서버, 쿠키 : 클라이언트
-			return "redirect:index";
+			return "redirect:/index";
 		} else {
 			return "login";
 		}
@@ -51,6 +51,6 @@ public class LoginController {
 		
 		session.setMaxInactiveInterval(0);// 세션 유지시간을 0으로 = 종료
 		session.invalidate();// 세션 초기화 = 세션의 모든 속성 값을 제거 = 종료
-		return "redirect:index";
+		return "redirect:/index";
 	}
 }
