@@ -8,10 +8,10 @@ body {
 	display: inline-block;
 	width: 900px;
 	height: auto;
-	background-color: #EADFCC;
 }
 
 table {
+	background-color: #EADFCC;
 	border-collapse: collapse;
 	border-top: 2px solid #3c3c3c;
 }

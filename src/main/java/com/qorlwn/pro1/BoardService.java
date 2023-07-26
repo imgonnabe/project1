@@ -19,8 +19,8 @@ public class BoardService {
 	private Util util;
 
 	// 보드 리스트 불러오는 메소드
-	public List<BoardDTO> boardList() {
-		return boardDAO.boardList();
+	public List<BoardDTO> boardList(PageDTO page) {
+		return boardDAO.boardList(page);
 	}
 
 	public BoardDTO detail(BoardDTO dto2) {
@@ -64,5 +64,10 @@ public class BoardService {
 	public void edit(BoardDTO dto) {
 		dto.setBip(util.getIp());
 		boardDAO.edit(dto);
+	}
+	
+	// 전체 글수 가져오기
+	public int totalCount() {
+		return boardDAO.totalCount();
 	}
 }

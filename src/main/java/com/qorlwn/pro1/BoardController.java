@@ -1,5 +1,7 @@
 package com.qorlwn.pro1;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
+
 @Controller
 public class BoardController {
 	// user > controller > service > dao > mybatis > db
@@ -22,12 +26,33 @@ public class BoardController {
 
 	@Autowired
 	private Util util;
-
+	
+	// localhost/board?pageNo=10
 	@GetMapping("/board")
-	public String board(Model model) {
+	public String board(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo, Model model) {
 		// 서비스에서 값 가져오기
-		model.addAttribute("list", boardService.boardList());
-
+		// 페이지네이션인포 > 값 넣고 > db >jsp
+		// PaginationInfo에 필수 정보를 넣어준다.
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(pageNo);// 현재 페이지 번호
+		paginationInfo.setRecordCountPerPage(10);// 한페이지에 게시되는 게시물 건수
+		paginationInfo.setPageSize(10);// 페이징 리스트의 사이즈
+		// 전체 글수 가져오는 명령문장
+		int totalCount = boardService.totalCount();
+		paginationInfo.setTotalRecordCount(totalCount);// 전체 게시물 건수
+		
+		int firstRecordIndex = paginationInfo.getFirstRecordIndex();// 시작위치
+		int recordCountPerPage = paginationInfo.getRecordCountPerPage();// 페이지당 글수
+		
+		PageDTO page = new PageDTO();
+		page.setFirstRecordIndex(firstRecordIndex);
+		page.setRecordCountPerPage(recordCountPerPage);
+		
+		// 보드서비스 수정
+		List<BoardDTO> list = boardService.boardList(page);
+		model.addAttribute("list", list);
+		// 페이징 관련 정봐 있는 PaginationInfo 객체를 모델에 넣어준다.
+		model.addAttribute("paginationInfo", paginationInfo);
 		return "board";
 	}
 
