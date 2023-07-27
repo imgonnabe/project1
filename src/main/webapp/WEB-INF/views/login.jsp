@@ -39,7 +39,7 @@
 	<%@ include file="menu.jsp"%>
 	<div class="section">
 		<form action="./login" method="post" onsubmit="return check()">
-			<h2 class="mb-4 pb-3">Log In</h2>
+			<h2>Log In</h2>
 			<div class="form-group">
 				<input type="text" name="id" class="form-style" id="id"
 					placeholder="Your ID" required="required" onchange="checkID()">
