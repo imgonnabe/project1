@@ -1,4 +1,4 @@
-package com.qorlwn.pro1;
+package com.qorlwn.login;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -52,5 +52,10 @@ public class LoginController {
 		session.setMaxInactiveInterval(0);// 세션 유지시간을 0으로 = 종료
 		session.invalidate();// 세션 초기화 = 세션의 모든 속성 값을 제거 = 종료
 		return "redirect:/index";
+	}
+	
+	@GetMapping("/join")
+	public String join() {
+		return "join";
 	}
 }

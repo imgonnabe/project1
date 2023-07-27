@@ -1,4 +1,4 @@
-package com.qorlwn.pro1;
+package com.qorlwn.login;
 
 public class LoginDTO {
 	private int m_no, m_grade, count;

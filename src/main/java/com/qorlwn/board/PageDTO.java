@@ -1,4 +1,4 @@
-package com.qorlwn.pro1;
+package com.qorlwn.board;
 
 public class PageDTO {
 	private int firstRecordIndex, recordCountPerPage;

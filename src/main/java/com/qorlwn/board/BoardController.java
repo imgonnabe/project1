@@ -1,6 +1,7 @@
-package com.qorlwn.pro1;
+package com.qorlwn.board;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.qorlwn.util.Util;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -92,7 +95,7 @@ public class BoardController {
 			dto.setBtitle(request.getParameter("title"));
 			dto.setBcontent(request.getParameter("content"));
 			dto.setM_id((String) session.getAttribute("mid"));// 세션에서 가져옴 getAttribute는 무조건 Object로 옴
-
+			dto.setBuuid(UUID.randomUUID().toString());
 			// service > dao > mybatis > db
 			boardService.write(dto);
 			return "redirect:/board";// 다시 컨트롤러 지나가기(get방식)

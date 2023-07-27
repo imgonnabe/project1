@@ -1,4 +1,4 @@
-package com.qorlwn.pro1;
+package com.qorlwn.login;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

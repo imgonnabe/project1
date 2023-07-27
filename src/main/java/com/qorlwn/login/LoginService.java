@@ -1,4 +1,4 @@
-package com.qorlwn.pro1;
+package com.qorlwn.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

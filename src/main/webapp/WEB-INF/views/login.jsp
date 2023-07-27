@@ -45,14 +45,18 @@
 					placeholder="Your ID" required="required" onchange="checkID()">
 				<i class="input-icon"></i>
 			</div>
+			<br>
 			<div class="form-group">
 				<input type="password" name="pw" class="form-style" id="pw"
 					placeholder="Your Password" required="required"> <i
 					class="input-icon"></i>
 			</div>
+			<br>
 			<button type="submit" class="btn">login</button>
 			<span id="msg"></span>
 		</form>
+		<br>
+		<a href="./join"><button type="button" class="signUp">Sign Up</button></a>
 	</div>
 </body>
 </html>

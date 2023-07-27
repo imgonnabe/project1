@@ -1,8 +1,10 @@
-package com.qorlwn.pro1;
+package com.qorlwn.board;
+
+import java.util.UUID;
 
 public class BoardDTO {
 	private int bno, blike;
-	private String btitle, bcontent, bdate, m_name, bip, m_id;
+	private String btitle, bcontent, bdate, m_name, bip, m_id, buuid;
 	public int getBno() {
 		return bno;
 	}
@@ -50,5 +52,11 @@ public class BoardDTO {
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
+	}
+	public String getBuuid() {
+		return buuid;
+	}
+	public void setBuuid(String buuid) {
+		this.buuid = buuid;
 	}
 }

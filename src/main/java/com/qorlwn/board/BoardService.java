@@ -1,13 +1,15 @@
-package com.qorlwn.pro1;
+package com.qorlwn.board;
 
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.qorlwn.util.Util;
 
 @Service("boardService")
 public class BoardService {

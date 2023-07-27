@@ -10,8 +10,8 @@ body {
 	font-size: 15px;
 	line-height: 1.7;
 	color: #c4c3ca;
-	background-color: #1f2029;
 	overflow-x: hidden;
+	text-align: center;
 }
 
 h2 {
@@ -21,7 +21,7 @@ h2 {
 .section {
 	position: relative;
 	width: 100%;
-	display: block;
+	display: inline-block;
 }
 
 .form-group {
@@ -35,7 +35,7 @@ h2 {
 	padding: 13px 20px;
 	padding-left: 55px;
 	height: 48px;
-	width: 100%;
+	width: 30%;
 	font-weight: 500;
 	border-radius: 4px;
 	font-size: 14px;

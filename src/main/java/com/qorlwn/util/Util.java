@@ -1,4 +1,4 @@
-package com.qorlwn.pro1;
+package com.qorlwn.util;
 
 import javax.servlet.http.HttpServletRequest;
 
