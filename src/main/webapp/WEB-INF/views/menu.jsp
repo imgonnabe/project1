@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="./css/menu.css">
-<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <nav>
 	<ul>
 		<li onclick="link('')" class="menu">메인</li>
