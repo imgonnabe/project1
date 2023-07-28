@@ -20,7 +20,7 @@ h2 {
 .section {
 	color: #c4c3ca;
 	position: relative;
-	width: 100%;
+	width: 50%;
 	display: block;
 	display: inline-block;
 }

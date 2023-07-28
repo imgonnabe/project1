@@ -7,5 +7,6 @@
 		<typeAlias type="com.qorlwn.board.BoardDTO" alias="boardDTO"/>
 		<typeAlias type="com.qorlwn.login.LoginDTO" alias="loginDTO"/>
 		<typeAlias type="com.qorlwn.board.PageDTO" alias="pageDTO"/>
+		<typeAlias type="com.qorlwn.login.JoinDTO" alias="joinDTO"/>
 	</typeAliases>
 </configuration>

@@ -38,8 +38,8 @@
 <body>
 	<%@ include file="menu.jsp"%>
 	<div class="section">
+	<h2>Log In</h2>
 		<form action="./login" method="post" onsubmit="return check()">
-			<h2>Log In</h2>
 			<div class="form-group">
 				<input type="text" name="id" class="form-style" id="id"
 					placeholder="Your ID" required="required" onchange="checkID()">
