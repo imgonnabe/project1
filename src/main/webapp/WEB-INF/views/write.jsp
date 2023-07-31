@@ -49,7 +49,7 @@
 		<form action="./write" method="post" onsubmit="return check()">
 			<input type="text" name="title" id="title">
 			<textarea id="summernote" name="content"></textarea>
-			<button class="btn" type="submit">글쓰기</button>
+			<button class="btn btn-primary" type="submit">글쓰기</button>
 		</form>
 	</div>
 	<script type="text/javascript">
