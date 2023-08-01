@@ -17,9 +17,25 @@
 			if(id == "" || id.length < 5){
 				// alert("아이디는 5글자 이상이어야 합니다.");
 				$("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
+				$("#resultMSG").css("color", "red");
 				$("#id").focus();
-				return false;
+			} else {
+				$.ajax({
+					url: "./checkID",
+					type: "post",
+					data: {"id": id},// checkID?id=pororo
+					dataType: "html",		
+					success: function(data){
+						$("#resultMSG").text("data : " + data);
+					},
+					error: function(request, status, error){
+						$("#resultMSG").text("error : " + error);
+					}
+				});
+				$("#resultMSG").text("5글자 이상으로 들어왔습니다.");
+				$("#resultMSG").css("color", "green");
 			}
+		return false;
 		});
 	});
 </script>
@@ -32,9 +48,10 @@
 			<div class="form-group">
 				<input type="text" name="id" class="form-style" id="id"
 					placeholder="아이디를 입력하세요." required="required" autocomplete="off">
-				<i class="input-icon"></i>
-				<br><button class="btn" id="idCheck">중복검사</button>
-				<br><span id="resultMSG"></span>
+				<i class="input-icon"></i> <br>
+				<button class="btn" id="idCheck">중복검사</button>
+				<br>
+				<span id="resultMSG"></span>
 			</div>
 			<div class="form-group">
 				<input type="password" name="pw" class="form-style" id="pw"
@@ -89,8 +106,9 @@
 			</div>
 			<br>
 			<div class="form-gender">
-				<input type="radio" name="gender" id="m" value="1"> <label for="m">남</label>
-				<input type="radio" name="gender" id="f" value="2"> <label for="f">여</label>
+				<input type="radio" name="gender" id="m" value="1"> <label
+					for="m">남</label> <input type="radio" name="gender" id="f"
+					value="2"> <label for="f">여</label>
 				<!-- label for : for 를 통해 for 뒤에 나오는 값 과 id 이름이 같은것을 찾아 연결시키는 역할을 한다. -->
 				<!-- label을 클릭하면, 연결된 양식에 입력할 수 있도록 하거나, 체크를 하거나, 체크를 해제한다. -->
 			</div>
