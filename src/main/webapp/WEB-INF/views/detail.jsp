@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상세보기</title>
-<link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/detail.css">
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">

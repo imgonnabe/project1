@@ -34,7 +34,7 @@ public class BoardController {
 	@GetMapping("/board")
 	public String board(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo, Model model) {
 		// 서비스에서 값 가져오기
-		// 페이지네이션인포 > 값 넣고 > db >jsp
+		// 페이지네이션인포 > 값 넣고 > db > jsp
 		// PaginationInfo에 필수 정보를 넣어준다.
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(pageNo);// 현재 페이지 번호
@@ -54,7 +54,7 @@ public class BoardController {
 		// 보드서비스 수정
 		List<BoardDTO> list = boardService.boardList(page);
 		model.addAttribute("list", list);
-		// 페이징 관련 정봐 있는 PaginationInfo 객체를 모델에 넣어준다.
+		// 페이징 관련 정보가 있는 PaginationInfo 객체를 모델에 넣어준다.
 		model.addAttribute("paginationInfo", paginationInfo);
 		return "board";
 	}

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원게시판</title>
-<link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/members.css">
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">

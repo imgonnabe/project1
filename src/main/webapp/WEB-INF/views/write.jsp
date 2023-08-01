@@ -8,7 +8,6 @@
 <title>글쓰기</title>
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="./css/menu.css">
 <link rel="stylesheet" href="./css/write.css">
 <!-- include libraries(jQuery, bootstrap) -->
 <link

@@ -6,6 +6,23 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" href="./css/join.css">
+<link rel="stylesheet" href="./css/join.css?version=0.2">
+<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+<script src="./js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#idCheck").click(function(){
+			let id = $("#id").val();
+			if(id == "" || id.length < 5){
+				// alert("아이디는 5글자 이상이어야 합니다.");
+				$("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
+				$("#id").focus();
+				return false;
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -13,13 +30,14 @@
 		<h2>Sign Up</h2>
 		<form action="./join" method="post">
 			<div class="form-group">
-				<input type="text" name="id" class="form-style"
+				<input type="text" name="id" class="form-style" id="id"
 					placeholder="아이디를 입력하세요." required="required" autocomplete="off">
 				<i class="input-icon"></i>
+				<br><button class="btn" id="idCheck">중복검사</button>
+				<br><span id="resultMSG"></span>
 			</div>
-			<br>
 			<div class="form-group">
-				<input type="password" name="pw" class="form-style"
+				<input type="password" name="pw" class="form-style" id="pw"
 					placeholder="비밀번호를 입력하세요." required="required" autocomplete="off">
 				<i class="input-icon"></i>
 			</div>
