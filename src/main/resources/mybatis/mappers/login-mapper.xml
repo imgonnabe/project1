@@ -23,5 +23,8 @@
 	<select id="members" resultMap="join">
 		select * from members
 	</select>
+	<select id="checkID" parameterType="String" resultType="Integer">
+		select count(*) from members where m_id = #{id}
+	</select>
 
 </mapper>

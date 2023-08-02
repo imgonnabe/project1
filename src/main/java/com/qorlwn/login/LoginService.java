@@ -22,6 +22,10 @@ public class LoginService {
 	public List<JoinDTO> members() {
 		return loginDAO.members();
 	}
+
+	public int checkID(String id) {
+		return loginDAO.checkID(id);
+	}
 	
 	
 	

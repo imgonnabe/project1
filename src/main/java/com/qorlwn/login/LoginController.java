@@ -5,23 +5,26 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	private LoginService loginService;
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
+
 	@PostMapping("/login")
 	public String login(HttpServletRequest request) {
 		// System.out.println(request.getParameter("id"));
@@ -29,7 +32,7 @@ public class LoginController {
 		LoginDTO dto = new LoginDTO();
 		dto.setM_id(request.getParameter("id"));
 		dto.setM_pw(request.getParameter("pw"));
-		
+
 		dto = loginService.login(dto);
 		if (dto.getCount() == 1) {
 			// 세션을 만들어서 로그인을 지정 시간동안 유지
@@ -42,26 +45,26 @@ public class LoginController {
 			return "login";
 		}
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		if (session.getAttribute("mname") != null) {
 			session.removeAttribute("mname");
 		}
-		if (session.getAttribute("mid") != null){
+		if (session.getAttribute("mid") != null) {
 			session.removeAttribute("mid");
 		}
-		
+
 		session.setMaxInactiveInterval(0);// 세션 유지시간을 0으로 = 종료
 		session.invalidate();// 세션 초기화 = 세션의 모든 속성 값을 제거 = 종료
 		return "redirect:/index";
 	}
-	
+
 	@GetMapping("/join")
 	public String join() {
 		return "join";
 	}
-	
+
 	@PostMapping("/join")
 	public String join(JoinDTO joinDTO) {
 		int result = loginService.join(joinDTO);
@@ -71,7 +74,7 @@ public class LoginController {
 			return "redirect:/join";
 		}
 	}
-	
+
 	@GetMapping("/members")
 	public ModelAndView members() {
 		ModelAndView mv = new ModelAndView("members");

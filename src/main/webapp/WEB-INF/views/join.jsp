@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <link rel="stylesheet" href="./css/join.css">
-<link rel="stylesheet" href="./css/join.css?version=0.2">
+<link rel="stylesheet" href="./css/join.css?version=0.2"><!-- css가 잘 안바뀐다면 적용 -->
 <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
 <script src="./js/jquery-3.7.0.min.js"></script>
@@ -14,28 +14,31 @@
 	$(function(){
 		$("#idCheck").click(function(){
 			let id = $("#id").val();
-			if(id == "" || id.length < 5){
-				// alert("아이디는 5글자 이상이어야 합니다.");
-				$("#resultMSG").text("아이디는 5글자 이상이어야 합니다.");
-				$("#resultMSG").css("color", "red");
+			if (id == "" || id.length < 5){
+				$("#resultMSG").text("아이디는 5글자 이상이어야 합니다.").css("color", "red").css("font-weight", "bold");
 				$("#id").focus();
 			} else {
-				$.ajax({
-					url: "./checkID",
-					type: "post",
-					data: {"id": id},// checkID?id=pororo
-					dataType: "html",		
-					success: function(data){
-						$("#resultMSG").text("data : " + data);
+				$.ajax({// ajax 시작
+					url : "./checkID",
+					type : "post",
+					data : {"id" : id},
+					dataType : "json",// json타입으로 되돌아옴 {result : 0}
+					success : function(data) {// 서버에서 날아오는 data
+						if (data.result == 1) {// 아이디 중복이면
+							$("#id").css("background-color", "red").focus();
+							$("#resultMSG").text("이미 등록된 아이디입니다.").css("color", "red").css("font-weight", "bold");
+						} else {
+							$("#id").css("background-color", "white");
+							$("#resultMSG").text("가입할 수 있습니다.").css("color", "blue").css("font-weight", "bold");
+						}
 					},
-					error: function(request, status, error){
-						$("#resultMSG").text("error : " + error);
+					error : function(request, status, error) {
+						$("#resultMSG").text("오류가 발생했습니다. 가입할 수 없습니다.");
 					}
-				});
-				$("#resultMSG").text("5글자 이상으로 들어왔습니다.");
-				$("#resultMSG").css("color", "green");
+				});// ajax 끝
+				
 			}
-		return false;
+			return false;
 		});
 	});
 </script>
@@ -47,7 +50,7 @@
 		<form action="./join" method="post">
 			<div class="form-group">
 				<input type="text" name="id" class="form-style" id="id"
-					placeholder="아이디를 입력하세요." required="required" autocomplete="off">
+					placeholder="아이디를 입력하세요." required="required">
 				<i class="input-icon"></i> <br>
 				<button class="btn" id="idCheck">중복검사</button>
 				<br>
@@ -55,25 +58,25 @@
 			</div>
 			<div class="form-group">
 				<input type="password" name="pw" class="form-style" id="pw"
-					placeholder="비밀번호를 입력하세요." required="required" autocomplete="off">
+					placeholder="비밀번호를 입력하세요." required="required">
 				<i class="input-icon"></i>
 			</div>
 			<br>
 			<div class="form-group">
 				<input type="password" name="pwcheck" class="form-style"
 					placeholder="비밀번호를 다시 입력하세요." required="required"
-					autocomplete="off"> <i class="input-icon"></i>
+					> <i class="input-icon"></i>
 			</div>
 			<br>
 			<div class="form-group">
 				<input type="text" name="name" class="form-style"
-					placeholder="이름을 입력하세요." required="required" autocomplete="off">
+					placeholder="이름을 입력하세요." required="required">
 				<i class="input-icon"></i>
 			</div>
 			<br>
 			<div class="form-group">
 				<input type="text" name="addr" class="form-style"
-					placeholder="주소를 입력하세요." autocomplete="off"> <i
+					placeholder="주소를 입력하세요."> <i
 					class="input-icon"></i>
 			</div>
 			<br> <label for="date">생년월일을 선택하세요 : <input type="date"

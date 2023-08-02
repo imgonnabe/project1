@@ -24,5 +24,9 @@ public class LoginDAO {
 		return sqlSession.selectList("login.members");
 	}
 
+	public int checkID(String id) {
+		return sqlSession.selectOne("login.checkID", id);
+	}
+
 	
 }
