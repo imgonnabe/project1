@@ -26,5 +26,8 @@
 	<select id="checkID" parameterType="String" resultType="Integer">
 		select count(*) from members where m_id = #{id}
 	</select>
+	<select id="boardList2" resultType="Map">
+		select * from boardview limit 0, 10
+	</select>
 
 </mapper>
