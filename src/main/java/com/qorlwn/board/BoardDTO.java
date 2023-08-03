@@ -1,7 +1,5 @@
 package com.qorlwn.board;
 
-import java.util.UUID;
-
 public class BoardDTO {
 	private int bno, blike;
 	private String btitle, bcontent, bdate, m_name, bip, m_id, buuid;
