@@ -29,7 +29,7 @@ public class BoardDAO {
 	}
 
 	public void delete(BoardDTO dto) {
-		sqlSession.delete("board.delete", dto);
+		sqlSession.update("board.delete", dto);
 	}
 
 	public void edit(BoardDTO dto) {

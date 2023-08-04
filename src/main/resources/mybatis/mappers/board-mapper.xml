@@ -31,10 +31,11 @@
 		members where m_id=#{m_id}), #{bip}, #{buuid})
 	</insert>
 
-	<delete id="delete" parameterType="boardDTO">
-		delete from board where bno=#{bno}
+	<update id="delete" parameterType="boardDTO">
+		update board set bdel = 0 
+		where bno=#{bno}
 		and m_no=(select m_no from members where m_id=#{m_id})
-	</delete>
+	</update>
 
 	<update id="edit" parameterType="boardDTO">
 		update board set

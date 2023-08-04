@@ -52,7 +52,7 @@
 		</form>
 	</div>
 	<script type="text/javascript">
-		/* JQuery 문법 : 문서가 모두 로딩되었다면, 익명함수를 실행한다. */
+		/* jQuery 문법 : 문서가 모두 로딩되었다면, 익명함수를 실행한다. */
 		/* textarea에 서머노트를 실행한다. */
 		$(document).ready(function() {
 			$('#summernote').summernote({
