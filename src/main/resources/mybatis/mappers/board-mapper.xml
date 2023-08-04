@@ -18,6 +18,10 @@
 		and m_id=#{m_id}
 		</if>
 	</select>
+	
+	<select id="commentsList" parameterType="Integer" resultType="Map">
+		select * from commentsview where bno = #{bno}
+	</select>
 
 	<!-- insert는 result가 없다. -->
 	<!-- 서브쿼리 : 쿼리 속에 쿼리 -->

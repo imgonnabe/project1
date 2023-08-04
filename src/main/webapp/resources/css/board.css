@@ -34,6 +34,12 @@ tr:hover {
 	color: white;
 	background-color: #878377;
 	font-size: large;
+	cursor: pointer;
+}
+
+small {
+	color: red;
+	font-weight: bold;
 }
 
 .btn {

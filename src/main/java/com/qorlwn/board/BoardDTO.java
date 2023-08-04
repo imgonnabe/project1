@@ -1,7 +1,7 @@
 package com.qorlwn.board;
 
 public class BoardDTO {
-	private int bno, blike;
+	private int bno, blike, commentcount;
 	private String btitle, bcontent, bdate, m_name, bip, m_id, buuid;
 	public int getBno() {
 		return bno;
@@ -56,5 +56,11 @@ public class BoardDTO {
 	}
 	public void setBuuid(String buuid) {
 		this.buuid = buuid;
+	}
+	public int getCommentcount() {
+		return commentcount;
+	}
+	public void setCommentcount(int commentcount) {
+		this.commentcount = commentcount;
 	}
 }

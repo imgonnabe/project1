@@ -29,7 +29,9 @@ public class RestController01 {// controller + responsebody
 		json.put("result", result);
 		return json.toString();// {"result":1}
 	}
-	
+	// consumes = MediaType.APPLICATION_JSON_VALUE // 들어오는 데이터 타입 정의
+	// produces = MediaType.APPLICATION_JSON_VALUE // 반환하는 데이터 타입을 정의
+	// MediaType : 들어오는 데이터와 나가는 데이터를 정하여 처리
 	@GetMapping(value="/boardList2", produces="application/json; charset=utf-8")
 	public String boardList2(@RequestParam("pageNo") int pageNo) {
 		// System.out.println("jQuery가 보내주는 : " +  pageNo);

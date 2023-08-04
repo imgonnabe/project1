@@ -34,10 +34,10 @@
 					$(".table2").empty();
 					$(".paging").empty();
 					let html = "";
-					$.each(list, function(index) {
+					$.each(list, function(index) {// jQuery for문
 						html += "<tr>";
 						html +=	"<td>" + list[index].bno + "</td>";
-						html +=	"<td>" + list[index].btitle + "</td>";
+						html +=	"<td>" + list[index].btitle + list[index].commentcount + "</td>";
 						html +=	"<td>" + list[index].m_name + "</td>";
 						html +=	"<td>" + list[index].bdate + "</td>";
 						html +=	"<td>" + list[index].blike + "</td>";
@@ -104,11 +104,12 @@
 			ajax_call(pageNo);
 		});
 		$(document).on("click", ".backward", function() {// ▶
-			
-			ajax_call(pageNo -= 1);
+			pageNo = pageNo - 1;
+			ajax_call(pageNo);
 		});
 		$(document).on("click", ".forward", function() {// ▶
-			ajax_call(pageNo += 1);
+			pageNo = pageNo + 1;
+			ajax_call(pageNo);
 		});
 		$(document).on("click", ".end", function() {// ▶▶
 			pageNo = pageNo + 10;

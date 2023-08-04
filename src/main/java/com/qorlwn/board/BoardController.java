@@ -1,6 +1,7 @@
 package com.qorlwn.board;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -68,8 +69,13 @@ public class BoardController {
 		// dto로 변경한다.
 		BoardDTO dto = new BoardDTO();
 		dto.setBno(bno);
-		// dto.setM_id((String) session.getAttribute("mid")); 글 상세보기는 mid가 없어도 된다.
+		// dto.setM_id((String) session.getAttribute("mid")); // 글 상세보기는 mid가 없어도 된다.
 		BoardDTO result = boardService.detail(dto);
+		// System.out.println(result.getCommentcount());
+		if (result.getCommentcount() > 0) {// 코멘트 달기
+			List<Map<String, Object>> commentsList = boardService.commentsList(bno);
+			model.addAttribute("commentsList", commentsList);
+		}
 		model.addAttribute("dto", result);
 		return "detail";
 	}

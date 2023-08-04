@@ -1,7 +1,7 @@
 package com.qorlwn.board;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -71,5 +71,9 @@ public class BoardService {
 	// 전체 글수 가져오기
 	public int totalCount() {
 		return boardDAO.totalCount();
+	}
+
+	public List<Map<String, Object>> commentsList(int bno) {
+		return boardDAO.commentsList(bno);
 	}
 }
