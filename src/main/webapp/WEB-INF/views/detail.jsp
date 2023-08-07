@@ -45,6 +45,7 @@
 				// alert($(this).parent().siblings('#c-no').text());// 부모인 c-name의 형제 c-no (div를 기준으로 찾음)
 				let cno = $(this).parent().siblings('#c-no').text();
 				// location.href = "./cdel?bno=${dto.bno}&cno=" + cno;// el, java, jstl > html, css, javascript, jQuery
+				let c_comments = $(this).parents(".c-parent");// 변수처리
 				$.ajax({
 					url : "./cdelR",
 					type : "post",
@@ -52,12 +53,12 @@
 					dataType : "json",
 					success : function(data){
 						if(data.result == 1){
-							$(this).parents(".c-parent").remove();
+							c_comments.remove();
 						} else{
 							alert("통신에 문제가 발생했습니다. 다시 시도해주세요.");
 						}
 					},
-					error:function(error){
+					error : function(error){
 						alert("에러"+error);
 					}
 				});
@@ -65,20 +66,6 @@
 		});
 		
 		// 댓글 수정 버튼 = 로그인 > 자기 글인지 확인
-		/* function ajax_call(cno){
-			$.ajax({
-				url : "./edit2",
-				type : "post",
-				data : {"c_no", cno},
-				dataType : "json",
-				success : function(data){
-					
-				},
-				error : function(error){
-					
-				}
-			});
-		} */
 	});
 </script>
 </head>
