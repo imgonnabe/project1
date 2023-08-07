@@ -47,4 +47,9 @@
 		blike=blike+1 where bno=#{bno}
 	</update>
 	
+	<update id="cdel" parameterType="Map">
+		update comments set
+		c_del = 0 where bno=#{bno} and c_no=#{cno} and m_no=(select m_no from members where m_id=#{m_id})
+	</update>
+	
 </mapper>

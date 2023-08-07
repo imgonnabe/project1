@@ -30,7 +30,7 @@ public class BoardController {
 
 	@Autowired
 	private Util util;
-	
+
 	// localhost/board?pageNo=10
 	@GetMapping("/board")
 	public String board(@RequestParam(value = "pageNo", required = false, defaultValue = "1") int pageNo, Model model) {
@@ -44,14 +44,14 @@ public class BoardController {
 		// 전체 글수 가져오는 명령문장
 		int totalCount = boardService.totalCount();
 		paginationInfo.setTotalRecordCount(totalCount);// 전체 게시물 건수
-		
+
 		int firstRecordIndex = paginationInfo.getFirstRecordIndex();// 시작위치
 		int recordCountPerPage = paginationInfo.getRecordCountPerPage();// 페이지당 글수
-		
+
 		PageDTO page = new PageDTO();
 		page.setFirstRecordIndex(firstRecordIndex);
 		page.setRecordCountPerPage(recordCountPerPage);
-		
+
 		// 보드서비스 수정
 		List<BoardDTO> list = boardService.boardList(page);
 		model.addAttribute("list", list);
@@ -112,7 +112,8 @@ public class BoardController {
 
 	// 게시물이 삭제된다면
 	@GetMapping("/delete")
-	public String delete(@RequestParam(value = "bno", required = true, defaultValue = "0") int bno, HttpSession session) {// HttpServletRequest의
+	public String delete(@RequestParam(value = "bno", required = true, defaultValue = "0") int bno,
+			HttpSession session) {// HttpServletRequest의
 		// 로그인 여부 확인
 		if (session.getAttribute("mid") != null) {
 			// System.out.println(session.getAttribute("mid"));
@@ -159,6 +160,26 @@ public class BoardController {
 		// System.out.println(dto.getBno());
 		boardService.edit(dto);
 		return "redirect:/detail?bno=" + dto.getBno();
+	}
+
+	@GetMapping("/cdel") // bno, cno
+	public String cdel(@RequestParam Map<String, Object> map, HttpSession session) {
+		// 로그인여부 검사
+		if (session.getAttribute("mid") != null) {
+			// 값 들어왔는지 검사
+			if (map.containsKey("bno") && map.get("cno") != null && !(map.get("bno").equals(""))
+					&& !(map.get("cno").equals("")) && util.isNum(map.get("bno")) && util.isNum(map.get("cno"))) {
+				// map.containsKey("bno") : key 값 뽑음
+				// map.get("bno") : value 값 뽑음
+				// map.put(4, null);
+				// System.out.println(map.get(4) != null ? true : false); // false
+				// value에 null값이 허용되면, 실제 key가 존재하는지 여부를 체크할 때 정확한 값이 나오지 않는 제약 사항이 있다.
+				map.put("m_id", session.getAttribute("mid"));// "m_id"로 써야함
+				int result = boardService.cdel(map);
+				System.out.println("삭제결과: " + result);
+			}
+		}
+		return "redirect:/detail?bno=" + map.get("bno");
 	}
 
 }
