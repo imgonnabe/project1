@@ -174,7 +174,7 @@ public class BoardController {
 				// map.put(4, null);
 				// System.out.println(map.get(4) != null ? true : false); // false
 				// value에 null값이 허용되면, 실제 key가 존재하는지 여부를 체크할 때 정확한 값이 나오지 않는 제약 사항이 있다.
-				map.put("m_id", session.getAttribute("mid"));// "m_id"로 써야함
+				map.put("m_id", session.getAttribute("mid"));// "m_id"로 써야함 > board-mapper에 m_id=#{m_id}
 				int result = boardService.cdel(map);
 				System.out.println("삭제결과: " + result);
 			}
@@ -182,4 +182,19 @@ public class BoardController {
 		return "redirect:/detail?bno=" + map.get("bno");
 	}
 
+	@PostMapping("/cedit")
+	public String cedit(@RequestParam Map<String, Object> map, HttpSession session) {
+		if (session.getAttribute("mid") != null) {
+			if (map.get("bno") != null && !(map.get("bno").equals("")) && map.containsKey("cno") && !(map.get("cno").equals(""))) {
+				map.put("mid", session.getAttribute("mid"));
+				System.out.println(map);
+				int result = boardService.cedit(map);
+				return "redirect:/detail?bno=" + map.get("bno");
+			} else {
+				return "redirect:/board";
+			}
+		} else {
+			return "redirect:/login";
+		}
+	}
 }
