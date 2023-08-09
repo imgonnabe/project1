@@ -51,4 +51,8 @@ public class BoardDAO {
 	public int cdel(Map<String, Object> map) {
 		return sqlSession.update("board.cdel", map);
 	}
+
+	public int write(Map<String, Object> map) {
+		return sqlSession.insert("board.write2", map);
+	}
 }

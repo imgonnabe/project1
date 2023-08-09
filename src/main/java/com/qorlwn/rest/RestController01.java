@@ -3,6 +3,7 @@ package com.qorlwn.rest;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
@@ -72,6 +73,20 @@ public class RestController01 {// controller + responsebody
 				result = boardService.cdel(map);
 				System.out.println("삭제결과: " + result);
 			}
+		}
+		JSONObject json = new JSONObject();
+		json.put("result", result);
+		return json.toString();
+	}
+	
+	@PostMapping("/write2")
+	public String write2(@RequestParam Map<String, Object> map, HttpServletRequest request) {
+		int result = 0;
+		HttpSession session = request.getSession();
+		if (session.getAttribute("mid") != null) {
+			map.put("m_id", session.getAttribute("mid"));
+			map.put("bcontent", request.getParameter("content"));
+			result = boardService.write(map);
 		}
 		JSONObject json = new JSONObject();
 		json.put("result", result);
