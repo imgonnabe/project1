@@ -32,7 +32,7 @@ $(document).ready(function() {
    }
   });
   
-	//글쓰기 버튼 클릭 이벤트 처리
+	//글쓰기 버튼 클릭
 	  $('form').submit(function(event) {
 	      event.preventDefault(); // 기본 제출 동작 방지
 	
@@ -43,16 +43,19 @@ $(document).ready(function() {
 	
 	      // AJAX 요청 설정
 	      $.ajax({
+	          url: './write2',
 	          type: 'post',
-	          url: './write2', // 서버 URL
 	          data: { content: contents }, // 전송할 데이터
-	          success: function(response) {
-	              // 서버로부터 성공 응답을 받았을 때 처리
-	              
+	          dataType : "json",
+	          success: function(data) {
+	              if(data.result == 1){
+	            	  alert("성공");
+	              } els{
+	            	  alert("실패");
+	              }
 	          },
-	          error: function() {
-	              // 서버와의 통신 중 오류가 발생했을 때 처리
-	              
+	          error: function(error) {
+	              alert("에러");
 	          }
 	      });
 	  });

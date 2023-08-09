@@ -78,7 +78,6 @@ public class RestController01 {// controller + responsebody
 		json.put("result", result);
 		return json.toString();
 	}
-<<<<<<< HEAD
 	
 	@PostMapping("/write2")
 	public String write2(@RequestParam Map<String, Object> map, HttpServletRequest request) {
@@ -88,8 +87,12 @@ public class RestController01 {// controller + responsebody
 			map.put("m_id", session.getAttribute("mid"));
 			map.put("bcontent", request.getParameter("content"));
 			result = boardService.write(map);
-=======
-
+		}
+		JSONObject json = new JSONObject();
+		json.put("result", result);
+		return json.toString();
+	}
+		
 	@PostMapping("/ceditR")
 	public String ceditR(@RequestParam Map<String, Object> map, HttpSession session) {
 		int result = 0;
@@ -100,7 +103,6 @@ public class RestController01 {// controller + responsebody
 				result = boardService.cedit(map);
 				System.out.println(result);
 			}
->>>>>>> refs/remotes/origin/master
 		}
 		JSONObject json = new JSONObject();
 		json.put("result", result);
