@@ -78,6 +78,7 @@ public class RestController01 {// controller + responsebody
 		json.put("result", result);
 		return json.toString();
 	}
+<<<<<<< HEAD
 	
 	@PostMapping("/write2")
 	public String write2(@RequestParam Map<String, Object> map, HttpServletRequest request) {
@@ -87,6 +88,19 @@ public class RestController01 {// controller + responsebody
 			map.put("m_id", session.getAttribute("mid"));
 			map.put("bcontent", request.getParameter("content"));
 			result = boardService.write(map);
+=======
+
+	@PostMapping("/ceditR")
+	public String ceditR(@RequestParam Map<String, Object> map, HttpSession session) {
+		int result = 0;
+		if (session.getAttribute("mid") != null) {
+			if (map.containsKey("bno") && map.get("cno") != null && !(map.get("bno").equals(""))
+					&& !(map.get("cno").equals("")) && util.isNum(map.get("bno")) && util.isNum(map.get("cno"))) {
+				map.put("mid", session.getAttribute("mid"));
+				result = boardService.cedit(map);
+				System.out.println(result);
+			}
+>>>>>>> refs/remotes/origin/master
 		}
 		JSONObject json = new JSONObject();
 		json.put("result", result);

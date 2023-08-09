@@ -52,7 +52,12 @@ public class BoardDAO {
 		return sqlSession.update("board.cdel", map);
 	}
 
+<<<<<<< HEAD
 	public int write(Map<String, Object> map) {
 		return sqlSession.insert("board.write2", map);
+=======
+	public int cedit(Map<String, Object> map) {
+		return sqlSession.update("board.cedit", map);
+>>>>>>> refs/remotes/origin/master
 	}
 }

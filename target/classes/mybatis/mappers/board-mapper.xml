@@ -53,7 +53,14 @@
 	
 	<update id="cdel" parameterType="Map">
 		update comments set
-		c_del = 0 where bno=#{bno} and c_no=#{cno} and m_no=(select m_no from members where m_id=#{m_id})
+		c_del = 0
+		where bno=#{bno} and c_no=#{cno} and m_no=(select m_no from members where m_id=#{m_id})
+	</update>
+	
+	<update id="cedit" parameterType="Map">
+		update comments set
+		c_comment=#{recomment}
+		where bno=#{bno} and c_no=#{cno} and m_no=(select m_no from members where m_id=#{mid})
 	</update>
 	
 </mapper>

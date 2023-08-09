@@ -30,7 +30,6 @@
 		if (confirm ("댓글을 삭제하시겠습니까?")){
 			location.href = "./cdel?bno=${dto.bno}&cno=" + cno;// cno
 		}
-			
 	}
 	
 	$(function() {
@@ -64,8 +63,68 @@
 				});
 			}
 		});
-		
 		// 댓글 수정 버튼 = 로그인 > 자기 글인지 확인
+		$(".cedit").click(function(){
+			// 변수 만들기 bno, cno, content, 글쓰기 수정 html
+			const bno = "${dto.bno}";
+			const cno = $(this).parent().siblings('#c-no').text();
+			let content = $(this).parents(".c-view").siblings('#c-comment').text();
+			let recommentBox = '<div class="c-box">';
+			recommentBox += '<form action="./cedit" method="post">';
+			recommentBox += '<textarea id="c-textarea" name="recomment" placeholder="댓글을 입력하세요.">'+content+'</textarea>';
+			recommentBox += '<input type="hidden" name="bno" id="bno" value="${dto.bno}">';
+			recommentBox += '<input type="hidden" name="cno" id="cno" value="'+cno+'">';
+			recommentBox += '<button type="submit" id="recommentbtn" class="btn">수정하기</button>';
+			recommentBox += '</form>';
+			recommentBox += '</div>';
+			// alert(bno + "/" + cno + "/" + content);
+			// <div class="c-parent"> 설정 안하면 수정버튼 누를 때 밑에 있는 내용도 같이 나옴
+			
+			/* // 내 위치 찾기
+			let commentDIV = $(this).parents(".c-parent");
+			// commentDIV.css("color", "red");
+			commentDIV.after(recommentBox);
+			commentDIV.remove();
+			// 수정, 삭제, 댓글창 열기 모두 삭제하기
+			$(".c-openbtn").remove();
+			$(".cedit").remove();
+			$(".cdel").remove(); */
+			$.ajax({
+				url : "./ceditR",
+				type : "post",
+				data : {bno: bno, cno: cno, recomment: content},
+				dataType : "json",
+				success : function(data){
+					if(data.result == 1){
+						let commentDIV = $(this).parents(".c-parent");
+						commentDIV.after(recommentBox);
+						commentDIV.remove();
+						// 수정, 삭제, 댓글창 열기 모두 삭제하기
+						$(".c-openbtn").remove();
+						$(".cedit").remove();
+						$(".cdel").remove();
+					} else {
+						alert("통신에 문제가 발생했습니다. 다시 시도해주세요.");
+					}
+				},
+				error : function(error){
+					alert("에러"+error);
+				}
+			});
+			
+		});
+		
+		
+		// 댓글 몇 글자 썼는지 확인하는 코드
+		// keyup 텍스트입력창 id="c-textarea", 댓글쓰기 버튼 id="c-btn"
+		$("#c-textarea").keyup(function(){
+			let text = $(this).val();
+			if(text.length > 100){
+				alert("100자를 초과했습니다.");
+				$(this).val(text.substr(0, 99));
+			}
+			$("#c-btn").text("댓글쓰기 "+text.length+"/100");
+		});
 	});
 </script>
 </head>
@@ -95,23 +154,26 @@
 		<div class="commentsList">
 			<c:choose>
 				<c:when test="${fn:length(commentsList) gt 0}">
-					<c:forEach items="${commentsList }" var="c">
-						<div class="c-parent">
-							<div class="c-view">
-								<div id="c-name">${c.m_name }(${c.m_id})
-									<c:if
-										test="${sessionScope.mid ne null && sessionScope.mid eq c.m_id }">
-										<img alt="" src="./img/update2.png" onclick="cedit()">
-										<img alt="" src="./img/delete2.png" class="cdel"
-											onclick="cdel1(${c.c_no })">
-									</c:if>
+					<div class="comments">
+						<c:forEach items="${commentsList }" var="c">
+							<div class="c-parent">
+								<div class="c-view">
+									<div id="c-name">${c.m_name }(${c.m_id})
+										<c:if
+											test="${sessionScope.mid ne null && sessionScope.mid eq c.m_id }">
+											<img alt="" src="./img/update2.png" class="cedit"
+												onclick="cedit()">
+											<img alt="" src="./img/delete2.png" class="cdel"
+												onclick="cdel1(${c.c_no })">
+										</c:if>
+									</div>
+									<div id="c-date">${c.c_date }</div>
+									<div id="c-no" hidden="">${c.c_no }</div>
 								</div>
-								<div id="c-date">${c.c_date }</div>
-								<div id="c-no" hidden="">${c.c_no }</div>
+								<div id="c-comment">${c.c_comment }</div>
 							</div>
-							<div id="c-comment">${c.c_comment }</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
+					</div>
 				</c:when>
 				<c:otherwise>
 					<h4>아직 댓글이 없습니다.</h4>
@@ -122,7 +184,7 @@
 				<div class="c-box">
 					<form action="./comment" method="post">
 						<textarea id="c-textarea" name="comment" placeholder="댓글을 입력하세요."></textarea>
-						<button type="submit" class="c-writebtn btn">댓글쓰기</button>
+						<button type="submit" class="c-writebtn btn" id="c-btn">댓글쓰기</button>
 						<input type="hidden" name="bno" value="${dto.bno }">
 					</form>
 				</div>

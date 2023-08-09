@@ -80,7 +80,12 @@ public class BoardService {
 		return boardDAO.cdel(map);
 	}
 
+<<<<<<< HEAD
 	public int write(Map<String, Object> map) {
 		return boardDAO.write(map);
+=======
+	public int cedit(Map<String, Object> map) {
+		return boardDAO.cedit(map);
+>>>>>>> refs/remotes/origin/master
 	}
 }
