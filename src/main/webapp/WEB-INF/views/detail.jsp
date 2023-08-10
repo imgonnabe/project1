@@ -147,9 +147,13 @@
 				<img alt="" src="./img/like.png">${dto.blike } / ${dto.bip }
 			</div>
 			<br>
-			<div class="title">${dto.btitle }</div>
+			<div class="title">${dto.btitle }
 		</div>
-		<div id="content">${dto.bcontent }</div>
+		<div id="content">
+			<c:forEach var="row" items="${dto.bcontent }">
+	            ${row }
+	        </c:forEach>
+        </div>
 		<div style="height: 10px; width: 100%;"></div>
 		<div class="commentsList">
 			<c:choose>
@@ -190,6 +194,7 @@
 				</div>
 			</c:if>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

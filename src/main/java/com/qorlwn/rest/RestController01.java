@@ -1,8 +1,11 @@
 package com.qorlwn.rest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
@@ -73,6 +76,29 @@ public class RestController01 {// controller + responsebody
 				System.out.println("삭제결과: " + result);
 			}
 		}
+		JSONObject json = new JSONObject();
+		json.put("result", result);
+		return json.toString();
+	}
+
+	@PostMapping("/write2")
+	public String write2(@RequestParam("contents") String[] arr, HttpServletRequest request) {
+		System.out.println(Arrays.toString(arr));
+		System.out.println(request.getParameter("contents"));
+		int result = 0;
+		HttpSession session = request.getSession();
+
+		/*
+		 * if (session.getAttribute("mid") != null) { map.put("m_id",
+		 * session.getAttribute("mid")); System.out.println(map); List<String> contents
+		 * = new ArrayList<String>(); String[] contentArr =
+		 * request.getParameterValues("contents"); System.out.println(contentArr);
+		 * 
+		 * if (contentArr != null) { for (String content : contentArr) {
+		 * contents.add(content); System.out.println(content); } } map.put("bcontent",
+		 * contents); result = boardService.write(map); }
+		 */
+
 		JSONObject json = new JSONObject();
 		json.put("result", result);
 		return json.toString();

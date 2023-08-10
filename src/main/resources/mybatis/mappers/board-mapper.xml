@@ -30,6 +30,11 @@
 		bcontent, m_no, bip, buuid) values (#{btitle}, #{bcontent}, (select m_no from
 		members where m_id=#{m_id}), #{bip}, #{buuid})
 	</insert>
+	
+	<!-- write2 -->
+	<insert id="write2" parameterType="Map">
+		insert into board (bcontent, m_no) values (#{bcontent}, select m_no from members where m_id=#{m_id})
+	</insert>
 
 	<update id="delete" parameterType="boardDTO">
 		update board set bdel = 0 

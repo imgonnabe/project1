@@ -52,7 +52,6 @@ public class BoardService {
 		// btitle을 꺼낸다.
 		// 값을 변경한다. replace() < -> &lt;, > -> &gt;
 		// 다시 저장
-		dto.setBtitle(util.exchange(dto.getBtitle()));
 		dto.setBip(util.getIp());// 얻어온 ip도 저장해서 데이터베이스로 보내겠습니다.
 		boardDAO.write(dto);// 실행만 시키고 결과를 받지 않는다.
 		// select를 제외한 나머지는 영향받은 행의 수(int)를 받아오기도 한다.
@@ -80,7 +79,11 @@ public class BoardService {
 	public int cdel(Map<String, Object> map) {
 		return boardDAO.cdel(map);
 	}
-
+	
+	// write(map)
+	public int write(Map<String, Object> map) {
+		return boardDAO.write(map);
+	}
 	public int cedit(Map<String, Object> map) {
 		return boardDAO.cedit(map);
 	}
