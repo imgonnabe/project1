@@ -2,6 +2,7 @@ package com.qorlwn.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -82,22 +84,17 @@ public class RestController01 {// controller + responsebody
 	}
 
 	@PostMapping("/write2")
-	public String write2(@RequestParam("contents") String[] arr, HttpServletRequest request) {
-		System.out.println(Arrays.toString(arr));
-		System.out.println(request.getParameter("contents"));
+	public String write2(@RequestBody String[] contents, HttpServletRequest request) {
 		int result = 0;
 		HttpSession session = request.getSession();
-
-		/*
-		 * if (session.getAttribute("mid") != null) { map.put("m_id",
-		 * session.getAttribute("mid")); System.out.println(map); List<String> contents
-		 * = new ArrayList<String>(); String[] contentArr =
-		 * request.getParameterValues("contents"); System.out.println(contentArr);
-		 * 
-		 * if (contentArr != null) { for (String content : contentArr) {
-		 * contents.add(content); System.out.println(content); } } map.put("bcontent",
-		 * contents); result = boardService.write(map); }
-		 */
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if (session.getAttribute("mid") != null) {
+			map.put("m_id", session.getAttribute("mid"));
+			List<String> contentList = Arrays.asList(contents);
+			map.put("bcontent", contentList);
+			result = boardService.write(map);
+		}
 
 		JSONObject json = new JSONObject();
 		json.put("result", result);

@@ -182,28 +182,6 @@ public class BoardController {
 		return "redirect:/detail?bno=" + map.get("bno");
 	}
 	
-	@GetMapping("/write2")
-	public String write2(HttpSession session) {
-		if (session.getAttribute("mname") != null) {
-			return "write2";
-		} else {
-			return "redirect:/login";
-		}
-	}
-
-	/*
-	 * @PostMapping("/write2") public String write2(HttpServletRequest request) { //
-	 * 사용자가 입력한 데이터 변수에 담기
-	 * 
-	 * HttpSession session = request.getSession(); if (session.getAttribute("mid")
-	 * != null) { BoardDTO dto = new BoardDTO();
-	 * dto.setBcontent(request.getParameter("content")); dto.setM_id((String)
-	 * session.getAttribute("mid"));// 세션에서 가져옴 getAttribute는 무조건 Object로 옴 //
-	 * service > dao > mybatis > db boardService.write(dto); return
-	 * "redirect:/board";// 다시 컨트롤러 지나가기(get방식) } else { return "redirect:/login"; }
-	 * }
-	 */
-
 	@PostMapping("/cedit")
 	public String cedit(@RequestParam Map<String, Object> map, HttpSession session) {
 		if (session.getAttribute("mid") != null) {
@@ -215,6 +193,16 @@ public class BoardController {
 			} else {
 				return "redirect:/board";
 			}
+		} else {
+			return "redirect:/login";
+		}
+	}
+	
+	// restcontroller에 적으면 안나옴
+	@GetMapping("/write2")
+	public String write2(HttpSession session) {
+		if (session.getAttribute("mname") != null) {
+			return "write2";
 		} else {
 			return "redirect:/login";
 		}

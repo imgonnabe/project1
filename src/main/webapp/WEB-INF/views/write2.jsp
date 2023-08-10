@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>연습용</title>
-<script src="./js/jquery-3.7.0.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -17,7 +15,7 @@
 		    $('.container').append(newImg); 
 		});
 		  
-	  // 글썼을 때 내용이 없으면
+	   // 글썼을 때 내용이 없으면
 	   $(document).on('click', '.writebtn', function() {
 		var contents = document.getElementsByClassName('content');
 		for (var i = 0; i < contents.length; i++) {
@@ -29,7 +27,7 @@
 		 }
 	 });
 	  
-	 //글쓰기 버튼 클릭
+	  //글쓰기 버튼 클릭
 	  $('.writebtn').click(function(event) {
 	      event.preventDefault(); // 기본 제출 동작 방지
 	
@@ -37,32 +35,30 @@
 	      $('.content').each(function() {
 	          contents.push($(this).val());
 	      });
-	
-	      // AJAX 요청 설정
+	      alert(contents);
 	      $.ajax({
-	          url: './write2',
-	          type: 'post',
-	          data: { contents: contents }, // 전송할 데이터
-	          contentType: 'application/json', // 데이터 타입 설정
-	          dataType : "json",
-	          success: function(data) {
-	              if(data.result == 1){
-	            	  alert("성공");
-	              } else{
-	            	  alert("실패");
-	              }
-	          },
-	          error: function(error) {
-	              alert("에러");
-	          }
+	    	 url:'./write2',
+	    	 type:'post',
+	    	 data:JSON.stringify(contents),
+	    	 contentType: 'application/json',
+	    	 dataType:'json',
+	    	 success:function(data){
+	    		 if(data.result == 1){
+	    			 alert("성공");
+	    		 } else{
+	    			 alert("실패");
+	    		 }
+	    	 },
+	    	 error:function(error){
+	    		 alert("에러");
+	    	 }
 	      });
 	  });
-		  
-	});
+	 });
 </script>
 </head>
 <body>
-	<h1><img onclick="location.href='./thread'" alt="" src="./img/x.png">새로운 스레드</h1>
+	<h1><img onclick="location.href='./thread'" alt="" src="./img/x.png">&nbsp;새로운 스레드</h1>
 	<hr>
 	<!--  <form action="./write2" method="post">-->
 		<div id="thread">
@@ -75,7 +71,7 @@
 			</div>
 		</div>
 		<button type="button" class="okbtn">새로운 스레드</button>
-		<button type="submit" class="writebtn">게시</button>
+		<button type="button" class="writebtn">게시</button>
 	<!-- </form> -->
 </body>
 </html>
