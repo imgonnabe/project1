@@ -84,16 +84,18 @@ public class RestController01 {// controller + responsebody
 	}
 
 	@PostMapping("/write2")
-	public String write2(@RequestBody String[] contents, HttpServletRequest request) {
+	public String write2(@RequestBody HashMap<String, Object> map, HttpServletRequest request) {
 		int result = 0;
 		HttpSession session = request.getSession();
-		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if (session.getAttribute("mid") != null) {
 			map.put("m_id", session.getAttribute("mid"));
-			List<String> contentList = Arrays.asList(contents);
-			map.put("bcontent", contentList);
-			result = boardService.write(map);
+			
+			/*
+			 * List<String> list = new ArrayList<String>(); for (Map<String, String> data :
+			 * jsonData) { String value = data.get("value"); list.add(value);
+			 * map.put("bcontent", list); } result = boardService.write(map);
+			 */
 		}
 
 		JSONObject json = new JSONObject();

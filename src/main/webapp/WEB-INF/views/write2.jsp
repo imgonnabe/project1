@@ -32,16 +32,21 @@
 	      event.preventDefault(); // 기본 제출 동작 방지
 	
 	      var contents = []; // textarea 내용을 저장할 배열
-	      $('.content').each(function() {
-	          contents.push($(this).val());
+	      $('.content').each(function(index) {
+	    	    var contentKey = 'content' + index; // 각 content에 대한 고유한 키 생성
+	    	    var contentValue = $(this).val();
+	    	    contents.push({ key: contentKey, value: contentValue });
 	      });
+	      var jsonData = JSON.stringify(contents); // JSON으로 변환
 	      alert(contents);
+	      alert(jsonData);
+	      
 	      $.ajax({
 	    	 url:'./write2',
 	    	 type:'post',
-	    	 data:JSON.stringify(contents),
-	    	 contentType: 'application/json',
-	    	 dataType:'json',
+	    	 data:jsonData,// 보낼 데이터의 자료형
+	         contentType: 'application/json', // JSON 데이터 형식
+	    	 dataType:'json',// 받아올 데이터의 자료형
 	    	 success:function(data){
 	    		 if(data.result == 1){
 	    			 alert("성공");
