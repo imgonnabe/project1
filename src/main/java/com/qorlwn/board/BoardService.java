@@ -62,9 +62,8 @@ public class BoardService {
 		boardDAO.delete(dto);
 	}
 
-	public void edit(BoardDTO dto) {
-		dto.setBip(util.getIp());
-		boardDAO.edit(dto);
+	public int edit(BoardDTO dto) {
+		return boardDAO.edit(dto);
 	}
 	
 	// 전체 글수 가져오기
@@ -80,9 +79,9 @@ public class BoardService {
 		return boardDAO.cdel(map);
 	}
 	
-	// write(map)
-	public int write(Map<String, Object> map) {
-		return boardDAO.write(map);
+	// write(dto)
+	public int write2(BoardDTO dto) {
+		return boardDAO.write2(dto);
 	}
 	public int cedit(Map<String, Object> map) {
 		return boardDAO.cedit(map);

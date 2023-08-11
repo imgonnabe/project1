@@ -147,54 +147,60 @@
 				<img alt="" src="./img/like.png">${dto.blike } / ${dto.bip }
 			</div>
 			<br>
-			<div class="title">${dto.btitle }
-		</div>
-		<div id="content">
-			<c:forEach var="row" items="${dto.bcontent }">
-	            ${row }
-	        </c:forEach>
-        </div>
-		<div style="height: 10px; width: 100%;"></div>
-		<div class="commentsList">
-			<c:choose>
-				<c:when test="${fn:length(commentsList) gt 0}">
-					<div class="comments">
-						<c:forEach items="${commentsList }" var="c">
-							<div class="c-parent">
-								<div class="c-view">
-									<div id="c-name">${c.m_name }(${c.m_id})
-										<c:if
-											test="${sessionScope.mid ne null && sessionScope.mid eq c.m_id }">
-											<img alt="" src="./img/update2.png" class="cedit"
-												onclick="cedit()">
-											<img alt="" src="./img/delete2.png" class="cdel"
-												onclick="cdel1(${c.c_no })">
-										</c:if>
+			<div class="title">${dto.btitle }</div>
+			<div id="content">
+				<c:set var="original" value="${dto.bcontent}" />
+				<c:set var="c1" value="[" />
+				<c:set var="r1" value="<br>" />
+				<c:set var="c2" value="]" />
+				<c:set var="r2" value="<br>" />
+				
+				<c:set var="m1" value="${fn:replace(original, c1, r1)}" />
+				<c:set var="m2" value="${fn:replace(m1, c2, r2)}" />
+				
+				${m2}
+			</div>
+			<div style="height: 10px; width: 100%;"></div>
+			<div class="commentsList">
+				<c:choose>
+					<c:when test="${fn:length(commentsList) gt 0}">
+						<div class="comments">
+							<c:forEach items="${commentsList }" var="c">
+								<div class="c-parent">
+									<div class="c-view">
+										<div id="c-name">${c.m_name }(${c.m_id})
+											<c:if
+												test="${sessionScope.mid ne null && sessionScope.mid eq c.m_id }">
+												<img alt="" src="./img/update2.png" class="cedit"
+													onclick="cedit()">
+												<img alt="" src="./img/delete2.png" class="cdel"
+													onclick="cdel1(${c.c_no })">
+											</c:if>
+										</div>
+										<div id="c-date">${c.c_date }</div>
+										<div id="c-no" hidden="">${c.c_no }</div>
 									</div>
-									<div id="c-date">${c.c_date }</div>
-									<div id="c-no" hidden="">${c.c_no }</div>
+									<div id="c-comment">${c.c_comment }</div>
 								</div>
-								<div id="c-comment">${c.c_comment }</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<h4>아직 댓글이 없습니다.</h4>
+					</c:otherwise>
+				</c:choose>
+				<c:if test="${sessionScope.mid ne null}">
+					<button type="button" class="c-openbtn btn">댓글창 열기</button>
+					<div class="c-box">
+						<form action="./comment" method="post">
+							<textarea id="c-textarea" name="comment" placeholder="댓글을 입력하세요."></textarea>
+							<button type="submit" class="c-writebtn btn" id="c-btn">댓글쓰기</button>
+							<input type="hidden" name="bno" value="${dto.bno }">
+						</form>
 					</div>
-				</c:when>
-				<c:otherwise>
-					<h4>아직 댓글이 없습니다.</h4>
-				</c:otherwise>
-			</c:choose>
-			<c:if test="${sessionScope.mid ne null}">
-				<button type="button" class="c-openbtn btn">댓글창 열기</button>
-				<div class="c-box">
-					<form action="./comment" method="post">
-						<textarea id="c-textarea" name="comment" placeholder="댓글을 입력하세요."></textarea>
-						<button type="submit" class="c-writebtn btn" id="c-btn">댓글쓰기</button>
-						<input type="hidden" name="bno" value="${dto.bno }">
-					</form>
-				</div>
-			</c:if>
+				</c:if>
+			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>

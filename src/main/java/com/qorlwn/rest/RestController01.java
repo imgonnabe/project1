@@ -1,8 +1,5 @@
 package com.qorlwn.rest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qorlwn.board.BoardDTO;
 import com.qorlwn.board.BoardService;
 import com.qorlwn.login.LoginService;
 import com.qorlwn.util.Util;
@@ -84,23 +82,39 @@ public class RestController01 {// controller + responsebody
 	}
 
 	@PostMapping("/write2")
-	public String write2(@RequestBody HashMap<String, Object> map, HttpServletRequest request) {
+	public String write2(@RequestBody List<Map<String, Object>> contents, HttpServletRequest request) {
 		int result = 0;
 		HttpSession session = request.getSession();
-		
+		System.out.println(contents);
+		String bcontent = "";
+		// List<Object> bcontent = new ArrayList<Object>();
 		if (session.getAttribute("mid") != null) {
-			map.put("m_id", session.getAttribute("mid"));
-			
-			/*
-			 * List<String> list = new ArrayList<String>(); for (Map<String, String> data :
-			 * jsonData) { String value = data.get("value"); list.add(value);
-			 * map.put("bcontent", list); } result = boardService.write(map);
-			 */
+			BoardDTO dto = new BoardDTO();
+			dto.setM_id((String) session.getAttribute("mid"));
+			for (Map<String, Object> map : contents) {
+				System.out.println(map.values());
+				//bcontent += map.values();
+				/*
+				 * for (Object str : map.values()) { System.out.println(str); bcontent += str +
+				 * " "; }
+				 */
+				
+				//List<Object> list = new ArrayList<Object>(map.values());
+				//bcontent.addAll(list);
+				dto.setBcontent(String.valueOf(map.values()));
+				System.out.println(dto.getBcontent());
+				result = boardService.write2(dto);
+				System.out.println(result+ "실행됨");
+			}
+
+			JSONObject json = new JSONObject();
+			json.put("result", result);
+			return json.toString();
+
+		} else {
+			return "redirect:/login";
 		}
 
-		JSONObject json = new JSONObject();
-		json.put("result", result);
-		return json.toString();
 	}
 
 	@PostMapping("/ceditR")

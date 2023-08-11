@@ -2,7 +2,8 @@ package com.qorlwn.board;
 
 public class BoardDTO {
 	private int bno, blike, commentcount;
-	private String btitle, bcontent, bdate, m_name, bip, m_id, buuid;
+	private String btitle, bdate, bcontent, m_name, bip, m_id, buuid;
+	// private List<Object> bcontent;
 	public int getBno() {
 		return bno;
 	}
@@ -39,12 +40,6 @@ public class BoardDTO {
 	public void setBip(String bip) {
 		this.bip = bip;
 	}
-	public String getBcontent() {
-		return bcontent;
-	}
-	public void setBcontent(String bcontent) {
-		this.bcontent = bcontent;
-	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -62,5 +57,11 @@ public class BoardDTO {
 	}
 	public void setCommentcount(int commentcount) {
 		this.commentcount = commentcount;
+	}
+	public String getBcontent() {
+		return bcontent;
+	}
+	public void setBcontent(String bcontent) {
+		this.bcontent = bcontent;
 	}
 }

@@ -32,8 +32,9 @@
 	</insert>
 	
 	<!-- write2 -->
-	<insert id="write2" parameterType="Map">
-		insert into board (bcontent, m_no) values (#{bcontent}, select m_no from members where m_id=#{m_id})
+	<insert id="write2" parameterType="boardDTO">
+		insert into board (bcontent, m_no) values (#{bcontent},(select m_no from
+		members where m_id=#{m_id}))
 	</insert>
 
 	<update id="delete" parameterType="boardDTO">
@@ -44,7 +45,7 @@
 
 	<update id="edit" parameterType="boardDTO">
 		update board set
-		btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
+		bcontent=#{bcontent} where bno=#{bno}
 	</update>
 	
 	<update id="likeUp" parameterType="boardDTO">

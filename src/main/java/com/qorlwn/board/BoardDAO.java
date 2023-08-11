@@ -32,8 +32,8 @@ public class BoardDAO {
 		sqlSession.update("board.delete", dto);
 	}
 
-	public void edit(BoardDTO dto) {
-		sqlSession.update("board.edit", dto);
+	public int edit(BoardDTO dto) {
+		return sqlSession.update("board.edit", dto);
 	}
 
 	public void likeUp(BoardDTO dto) {
@@ -52,10 +52,11 @@ public class BoardDAO {
 		return sqlSession.update("board.cdel", map);
 	}
 	
-	//write(map)
-	public int write(Map<String, Object> map) {
-		return sqlSession.insert("board.write2", map);
+	//write
+	public int write2(BoardDTO dto) {
+		return sqlSession.insert("board.write2",dto);
 	}
+	
 	public int cedit(Map<String, Object> map) {
 		return sqlSession.update("board.cedit", map);
 	}
