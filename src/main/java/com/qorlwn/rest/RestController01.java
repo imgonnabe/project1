@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Thread.index.ThreadDTO;
 import com.qorlwn.board.BoardDTO;
 import com.qorlwn.board.BoardService;
 import com.qorlwn.login.LoginService;
@@ -88,24 +89,19 @@ public class RestController01 {// controller + responsebody
 		System.out.println(contents);
 		String bcontent = "";
 		// List<Object> bcontent = new ArrayList<Object>();
+
 		if (session.getAttribute("mid") != null) {
 			BoardDTO dto = new BoardDTO();
 			dto.setM_id((String) session.getAttribute("mid"));
 			for (Map<String, Object> map : contents) {
 				System.out.println(map.values());
-				//bcontent += map.values();
-				/*
-				 * for (Object str : map.values()) { System.out.println(str); bcontent += str +
-				 * " "; }
-				 */
-				
-				//List<Object> list = new ArrayList<Object>(map.values());
-				//bcontent.addAll(list);
-				dto.setBcontent(String.valueOf(map.values()));
-				System.out.println(dto.getBcontent());
-				result = boardService.write2(dto);
-				System.out.println(result+ "실행됨");
+				bcontent += map.values();
+
+				// List<Object> list = new ArrayList<Object>(map.values());
+				// bcontent.addAll(list);
 			}
+			dto.setBcontent(bcontent);
+			result = boardService.write2(dto);
 
 			JSONObject json = new JSONObject();
 			json.put("result", result);
