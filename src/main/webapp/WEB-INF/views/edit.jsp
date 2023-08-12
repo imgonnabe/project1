@@ -5,9 +5,17 @@
 <meta charset="UTF-8">
 <title>수정 스레드</title>
 <link rel="stylesheet" href="./css/edit.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-</script>
+function check() {
+	    // 글썼을 때 내용이 없으면
+		let content = document.getElementsByClassName('content');
+		if (content[0].value.length < 1) {
+			alert("내용을 적어주세요.");
+			content.focus();
+			return false;
+		}
+	}
+</script>	
 </head>
 <body>
 	<h1><img onclick="location.href='./thread'" alt="" src="./img/x.png">&nbsp;수정 스레드</h1>
