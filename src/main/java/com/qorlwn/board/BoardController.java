@@ -163,8 +163,8 @@ public class BoardController {
 	
 	@PostMapping("/edit")
 	public String edit(BoardDTO dto) {
-		System.out.println(dto.getBno());
-		System.out.println("bcontent ::::"+dto.getBcontent());
+		// System.out.println(dto.getBno());
+		// System.out.println("bcontent ::::"+dto.getBcontent());
 		boardService.edit(dto);
 		return "redirect:/detail?bno=" +dto.getBno();
 	}
@@ -241,6 +241,6 @@ public class BoardController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "fileupload/upload_ok";
+		return "redirect:/write2";
 	}
 }
