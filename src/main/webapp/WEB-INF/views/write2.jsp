@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/write2.css">
 <title>연습용</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -75,7 +76,7 @@
 	<hr>
 	<div id="thread">
 		<img alt="" src="./img/profile.png">
-		<div id="m_id">아이디</div>
+		<div id="m_id">${sessionScope.mid}</div>
 		<div class="container">
 			<textarea cols="50" rows="8" maxlength="500" name="content"
 				class="content" required="required" placeholder="스레드를 시작하세요..."></textarea>

@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.lg-img {
+	margin-top:20px;
+	text-align: center;
+}
+
+#m_id{
+	font-size: large;
+	font-weight: bold;
+}

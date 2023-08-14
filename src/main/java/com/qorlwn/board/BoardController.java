@@ -204,7 +204,7 @@ public class BoardController {
 	// restcontroller에 적으면 안나옴
 	@GetMapping("/write2")
 	public String write2(HttpSession session) {
-		if (session.getAttribute("mname") != null) {
+		if (session.getAttribute("mid") != null) {
 			return "write2";
 		} else {
 			return "redirect:/login";

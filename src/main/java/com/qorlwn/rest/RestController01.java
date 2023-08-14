@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Thread.index.ThreadDTO;
 import com.qorlwn.board.BoardDTO;
 import com.qorlwn.board.BoardService;
 import com.qorlwn.login.LoginService;
