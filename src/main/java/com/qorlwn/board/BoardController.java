@@ -1,5 +1,7 @@
 package com.qorlwn.board;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -8,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.util.proxy.ProxyFactory.UniqueName;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.qorlwn.board.BoardDTO;
@@ -209,5 +213,34 @@ public class BoardController {
 		} else {
 			return "redirect:/login";
 		}
+	}
+	
+	@GetMapping("/upload")
+	public void form() {}
+	
+	@PostMapping("upload_ok")
+	public String upload(@RequestParam("file") MultipartFile file) {
+		String fileName = file.getOriginalFilename();// 파일명 얻어냄
+		long size = file.getSize();// 파일 사이즈
+		
+		System.out.println("파일명 : " + fileName);
+		System.out.println("용량크기 : " + size);
+		String fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		String uploadFolder = "c:\\test\\upload";
+		
+		UUID uuid = UUID.randomUUID();
+		String[] uuids = uuid.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		
+		File saveFile = new File(uploadFolder + "\\" + uniqueName +fileExtension);
+		try {
+			file.transferTo(saveFile);// 실제 파일 저장메서드
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "fileupload/upload_ok";
 	}
 }

@@ -81,7 +81,11 @@
 			<textarea cols="50" rows="8" maxlength="500" name="content"
 				class="content" required="required" placeholder="스레드를 시작하세요..."></textarea>
 			<br>
-			<img alt="" src="./img/clip.png"><br>
+			<!-- 파일 업로드에서는 enctype(인코딩타입)을 multipart/form-data로 반드시 설정 -->
+			<form action="upload_ok" method="post" enctype="multipart/form-data">
+				<img alt="" src="./img/clip.png"> <input type="file" name="file">
+				<input type="submit" value="전송">
+			</form>
 		</div>
 	</div>
 	<button type="button" class="okbtn">새로운 스레드</button>
