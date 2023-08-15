@@ -94,11 +94,14 @@ public class BoardService {
 	}
 
 	public String restore(MultipartFile file) {
+		// 파일 정보
 		String url = null;
 		String originFilename = file.getOriginalFilename();
 		String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
 		Long size = file.getSize();
 		
+		// 서버에 저장할 파일 이름
+		String saveFileName ="";
 		
 		
 		return null;
