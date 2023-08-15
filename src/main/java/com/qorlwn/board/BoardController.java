@@ -219,7 +219,7 @@ public class BoardController {
 	public void form() {}
 	
 	@PostMapping("upload_ok")
-	public String upload(@RequestParam("file") MultipartFile file) {
+	public String upload(@RequestParam("file") MultipartFile file, Model model) {
 		String fileName = file.getOriginalFilename();// 파일명 얻어냄
 		long size = file.getSize();// 파일 사이즈
 		
@@ -241,6 +241,7 @@ public class BoardController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/write2";
+		model.addAttribute(fileName, saveFile);
+		return "redirect:/upload_ok";
 	}
 }
