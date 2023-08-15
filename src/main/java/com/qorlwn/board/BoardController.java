@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileUpload;
 import org.apache.ibatis.javassist.util.proxy.ProxyFactory.UniqueName;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -215,33 +216,10 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping("/upload")
-	public void form() {}
-	
-	@PostMapping("upload_ok")
+	@PostMapping("upload")
 	public String upload(@RequestParam("file") MultipartFile file, Model model) {
-		String fileName = file.getOriginalFilename();// 파일명 얻어냄
-		long size = file.getSize();// 파일 사이즈
-		
-		System.out.println("파일명 : " + fileName);
-		System.out.println("용량크기 : " + size);
-		String fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-		String uploadFolder = "c:\\test\\upload";
-		
-		UUID uuid = UUID.randomUUID();
-		String[] uuids = uuid.toString().split("-");
-		
-		String uniqueName = uuids[0];
-		
-		File saveFile = new File(uploadFolder + "\\" + uniqueName +fileExtension);
-		try {
-			file.transferTo(saveFile);// 실제 파일 저장메서드
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute(fileName, saveFile);
-		return "redirect:/upload_ok";
+		String url = boardService.restore(file);
+		model.addAttribute("url", url);
+		return "result";
 	}
 }

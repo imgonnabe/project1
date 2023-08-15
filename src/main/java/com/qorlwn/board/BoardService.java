@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.qorlwn.util.Util;
 
@@ -85,5 +86,12 @@ public class BoardService {
 	}
 	public int cedit(Map<String, Object> map) {
 		return boardDAO.cedit(map);
+	}
+
+	public String restore(MultipartFile file) {
+		// 윈도우라면 workspace의 드라이브를 파악하여 JVM이 알아서 처리해준다.
+		// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
+		
+		return null;
 	}
 }
