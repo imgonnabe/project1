@@ -101,7 +101,7 @@ public class BoardService {
 		Long size = file.getSize();
 		
 		// 서버에 저장할 파일 이름
-		String saveFileName ="";
+		String saveFileName = "";
 		
 		
 		return null;
