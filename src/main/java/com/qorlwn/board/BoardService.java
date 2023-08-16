@@ -8,7 +8,6 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.qorlwn.util.Util;
 
@@ -21,11 +20,6 @@ public class BoardService {
 	@Autowired
 	private Util util;
 	
-	// 윈도우라면 workspace의 드라이브를 파악하여 JVM이 알아서 처리해준다.
-	// 따라서 workspace가 C드라이브에 있다면 C드라이브에 upload 폴더를 생성해 놓아야 한다.
-	private static final String SAVE_PATH = "/upload";//파일이 저장될 위치
-	private static final String PREFIX_URL = "/upload/"; //저장된 파일을 jsp에서 불러오기 위한 경로
-
 	// 보드 리스트 불러오는 메소드
 	public List<BoardDTO> boardList(PageDTO page) {
 		return boardDAO.boardList(page);
@@ -93,17 +87,4 @@ public class BoardService {
 		return boardDAO.cedit(map);
 	}
 
-	public String restore(MultipartFile file) {
-		// 파일 정보
-		String url = null;
-		String originFilename = file.getOriginalFilename();
-		String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
-		Long size = file.getSize();
-		
-		// 서버에 저장할 파일 이름
-		String saveFileName = "";
-		
-		
-		return null;
-	}
 }

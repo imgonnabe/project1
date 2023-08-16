@@ -1,11 +1,8 @@
 package com.qorlwn.board;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class BoardDTO {
 	private int bno, blike, commentcount;
 	private String btitle, bdate, bcontent, m_name, bip, m_id, buuid, filename;
-	private MultipartFile file;
 	// private List<Object> bcontent;
 	public int getBno() {
 		return bno;
@@ -72,11 +69,5 @@ public class BoardDTO {
 	}
 	public void setFilename(String filename) {
 		this.filename = filename;
-	}
-	public MultipartFile getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile file) {
-		this.file = file;
 	}
 }
