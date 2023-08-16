@@ -50,6 +50,8 @@
 				});
 			});
 			
+			$(".file")
+			
 			if (!contentsValid) {
 				alert("내용을 입력하세요.");
 		        return false; // AJAX 요청 막음
@@ -94,10 +96,7 @@
 				class="content" required="required" placeholder="스레드를 시작하세요..."></textarea>
 			<br>
 			<!-- 파일 업로드에서는 enctype(인코딩타입)을 multipart/form-data로 반드시 설정 -->
-			<form action="./upload" method="post" enctype="multipart/form-data">
-				<img alt="" src="./img/clip.png"> <input type="file" name="file">
-				<input type="submit" value="전송">
-			</form>
+			<img alt="" src="./img/clip.png"> <input type="file" name="file" class="file">
 		</div>
 	</div>
 	<button type="button" class="okbtn">새로운 스레드</button>
