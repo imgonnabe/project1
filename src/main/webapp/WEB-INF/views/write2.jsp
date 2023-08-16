@@ -36,13 +36,25 @@
 			event.preventDefault(); // 기본 제출 동작 방지
 
 			var contents = []; // textarea 내용을 저장할 배열
+			var contentsValid = true; // 모든 내용이 유효한지 여부
+			
 			$('.content').each(function(index) {
 				/*  var contentKey = 'content' + index; // 각 content에 대한 고유한 키 생성 */
 				var contentValue = $(this).val();
+				if(!contentValue){
+					 contentsValid = false;
+			         return false; // 반복 중단
+				}
 				contents.push({
 					contentKey : contentValue
 				});
 			});
+			
+			if (!contentsValid) {
+				alert("내용을 입력하세요.");
+		        return false; // AJAX 요청 막음
+		    }
+			
 			var jsonData = JSON.stringify(contents); // JSON으로 변환
 			// alert(contents);
 			// alert(jsonData);
