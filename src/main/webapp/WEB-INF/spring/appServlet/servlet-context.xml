@@ -34,12 +34,5 @@
 
 	<beans:import resource="classpath:/spring/*-context.xml" />
 	
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-      
-      <beans:property name="maxUploadSize" value="52428800" />
-      <beans:property name="maxUploadSizePerFile" value="20971520"></beans:property>
-      <beans:property name="defaultEncoding" value="utf-8" />
-   
-   </beans:bean>
 
 </beans:beans>
