@@ -55,7 +55,7 @@
 				dataType : 'json',// 받아올 데이터의 자료형
 				success : function(data) {
 					if (data.result == 1) {
-						window.location.href = 'board';
+						location.href = 'board';
 					} else {
 						alert("실패입니다. 다시 시도해주세요.");
 					}
