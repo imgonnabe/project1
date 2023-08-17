@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -82,7 +83,7 @@ public class RestController01 {// controller + responsebody
 	}
 
 	@PostMapping("/write2")
-	public String write2(@RequestBody List<Map<String, Object>> contents, HttpServletRequest request) {
+	public String write2(@RequestBody Map<String, Object> contents, HttpServletRequest request) {
 		int result = 0;
 		HttpSession session = request.getSession();
 		System.out.println(contents);
@@ -92,19 +93,20 @@ public class RestController01 {// controller + responsebody
 		if (session.getAttribute("mid") != null) {
 			BoardDTO dto = new BoardDTO();
 			dto.setM_id((String) session.getAttribute("mid"));
-			for (Map<String, Object> map : contents) {
-				System.out.println(map.values());
-				bcontent += map.values();
-
-				// List<Object> list = new ArrayList<Object>(map.values());
-				// bcontent.addAll(list);
-			}
-			dto.setBcontent(bcontent);
-			result = boardService.write2(dto);
-
-			JSONObject json = new JSONObject();
-			json.put("result", result);
-			return json.toString();
+			//for (Map<String, Object> map : contents) {
+				//System.out.println(map.values());
+				//bcontent += map.values();
+				for (String key : contents.keySet()) {
+					bcontent += contents.get(key);
+					dto.setBcontent(bcontent);
+					result = boardService.write2(dto);
+				}
+			//}
+			return "redirect:/board";
+			//JSONObject json = new JSONObject();
+			//json.put("result", result);
+			//return json.toString();
+				
 
 		} else {
 			return "redirect:/login";

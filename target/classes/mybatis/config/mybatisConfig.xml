@@ -8,7 +8,5 @@
 		<typeAlias type="com.qorlwn.login.LoginDTO" alias="loginDTO"/>
 		<typeAlias type="com.qorlwn.board.PageDTO" alias="pageDTO"/>
 		<typeAlias type="com.qorlwn.login.JoinDTO" alias="joinDTO"/>
-		<typeAlias type="com.qorlwn.upload.UploadDTO" alias="uploadDTO"/>
-		<typeAlias type="com.qorlwn.upload.UploadDAO" alias="uploadDAO"/>
 	</typeAliases>
 </configuration>

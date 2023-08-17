@@ -14,7 +14,8 @@
 	</resultMap>
 	
 	<select id="login" parameterType="loginDTO" resultType="loginDTO">
-		select m_name, count(*) as 'count' from membersview where m_id=#{m_id} and m_pw=#{m_pw}
+		select m_name, count(*) as 'count' from membersview 
+		where m_id=#{m_id} and AES_DECRYPT(unhex(m_pw),'bae')=#{m_pw}
 	</select>
 	<insert id="join" parameterType="joinDTO">
 		insert into members (m_id, m_pw, m_name, m_addr, m_birth, m_mbti, m_gender)
