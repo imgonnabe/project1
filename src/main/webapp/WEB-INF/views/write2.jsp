@@ -32,6 +32,7 @@
 		$('.writebtn').click(function(event) {
 			event.preventDefault(); // 기본 제출 동작 방지
 
+<<<<<<< HEAD
 			var formData = new FormData();
 			var contents = document.getElementsByClassName('content');
 			for (var i = 0; i < contents.length; i++) {
@@ -46,6 +47,33 @@
 					}
 			}
 			
+			var contents = []; // textarea 내용을 저장할 배열
+			var contentsValid = true; // 모든 내용이 유효한지 여부
+			
+			$('.content').each(function(index) {
+				/*  var contentKey = 'content' + index; // 각 content에 대한 고유한 키 생성 */
+				var contentValue = $(this).val();
+				if(!contentValue){
+					 contentsValid = false;
+			         return false; // 반복 중단
+				}
+				contents.push({
+					contentKey : contentValue
+				});
+			});
+			
+			$(".file")
+			
+			if (!contentsValid) {
+				alert("내용을 입력하세요.");
+		        return false; // AJAX 요청 막음
+		    }
+			
+			var jsonData = JSON.stringify(contents); // JSON으로 변환
+			// alert(contents);
+			// alert(jsonData);
+
+>>>>>>> refs/remotes/origin/master
 			$.ajax({
 				url : './write2',
 				type : 'post',
@@ -55,7 +83,7 @@
 				/* dataType : 'json',// 받아올 데이터의 자료형 */
 				success : function(data) {
 					if (data.result == 1) {
-						window.location.href = 'board';
+						location.href = 'board';
 					} else {
 						alert("실패입니다. 다시 시도해주세요.");
 					}
@@ -75,12 +103,20 @@
 		<img alt="" src="./img/profile.png">
 		<div id="m_id">${sessionScope.mid}</div>
 		<div class="container">
+<<<<<<< HEAD
 			<form class="uploadForm">
 				<textarea cols="50" rows="8" maxlength="500" name="content"
 					class="content" required="required" placeholder="스레드를 시작하세요..."></textarea>
 				<br>
 				<input type="file" name="file" class="file" multiple>
 			</form>
+=======
+			<textarea cols="50" rows="8" maxlength="500" name="content"
+				class="content" required="required" placeholder="스레드를 시작하세요..."></textarea>
+			<br>
+			<!-- 파일 업로드에서는 enctype(인코딩타입)을 multipart/form-data로 반드시 설정 -->
+			<img alt="" src="./img/clip.png"> <input type="file" name="file" class="file">
+>>>>>>> refs/remotes/origin/master
 		</div>
 	</div>
 	<button type="button" class="okbtn">새로운 스레드</button>
