@@ -7,4 +7,5 @@
 		insert into comments(bno, m_no, c_comment)
 		values (#{bno},(select m_no from members where m_id=#{m_id}) ,#{comment})
 	</insert>
+	
 </mapper>
